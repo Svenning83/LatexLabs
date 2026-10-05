@@ -1,0 +1,1132 @@
+{
+  "manufacturer": "Libidex",
+  "reference_version": "libidex-chart-seed-v1",
+  "source_url": "https://libidex.com/",
+  "colours": [
+    {
+      "id": "libidex_black",
+      "manufacturer": "Libidex",
+      "display_name": "Black",
+      "category": "Standard",
+      "finish": "Standard",
+      "active": true,
+      "references": [
+        "/swatches/libidex_black.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "deep true black; normal saturated latex colour with realistic latex gloss",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#151517"
+    },
+    {
+      "id": "libidex_white",
+      "manufacturer": "Libidex",
+      "display_name": "White",
+      "category": "Standard",
+      "finish": "Standard",
+      "active": true,
+      "references": [
+        "/swatches/libidex_white.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "clean solid white; normal saturated latex colour with realistic latex gloss",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#F0EFEA"
+    },
+    {
+      "id": "libidex_red",
+      "manufacturer": "Libidex",
+      "display_name": "Red",
+      "category": "Standard",
+      "finish": "Standard",
+      "active": true,
+      "references": [
+        "/swatches/libidex_red.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "classic saturated red; normal saturated latex colour with realistic latex gloss",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#D81E26"
+    },
+    {
+      "id": "libidex_royal_blue",
+      "manufacturer": "Libidex",
+      "display_name": "Royal Blue",
+      "category": "Standard",
+      "finish": "Standard",
+      "active": true,
+      "references": [
+        "/swatches/libidex_royal_blue.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "bright classic royal blue; normal saturated latex colour with realistic latex gloss",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#1E4FBC"
+    },
+    {
+      "id": "libidex_mid_blue",
+      "manufacturer": "Libidex",
+      "display_name": "Mid Blue",
+      "category": "Standard",
+      "finish": "Standard",
+      "active": true,
+      "references": [
+        "/swatches/libidex_mid_blue.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "medium blue; normal saturated latex colour with realistic latex gloss",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#2F6FB4"
+    },
+    {
+      "id": "libidex_light_blue",
+      "manufacturer": "Libidex",
+      "display_name": "Light Blue",
+      "category": "Standard",
+      "finish": "Standard",
+      "active": true,
+      "references": [
+        "/swatches/libidex_light_blue.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "pale sky blue; normal saturated latex colour with realistic latex gloss",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#6FB7E8"
+    },
+    {
+      "id": "libidex_turquoise",
+      "manufacturer": "Libidex",
+      "display_name": "Turquoise",
+      "category": "Standard",
+      "finish": "Standard",
+      "active": true,
+      "references": [
+        "/swatches/libidex_turquoise.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "blue-green turquoise; normal saturated latex colour with realistic latex gloss",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#1FA9A0"
+    },
+    {
+      "id": "libidex_jade_green",
+      "manufacturer": "Libidex",
+      "display_name": "Jade Green",
+      "category": "Standard",
+      "finish": "Standard",
+      "active": true,
+      "references": [
+        "/swatches/libidex_jade_green.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "rich jade green; normal saturated latex colour with realistic latex gloss",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#1F8F6E"
+    },
+    {
+      "id": "libidex_natural_green",
+      "manufacturer": "Libidex",
+      "display_name": "Natural Green",
+      "category": "Standard",
+      "finish": "Standard",
+      "active": true,
+      "references": [
+        "/swatches/libidex_natural_green.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "natural mid green; normal saturated latex colour with realistic latex gloss",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#3F9E4D"
+    },
+    {
+      "id": "libidex_olive_green",
+      "manufacturer": "Libidex",
+      "display_name": "Olive Green",
+      "category": "Standard",
+      "finish": "Standard",
+      "active": true,
+      "references": [
+        "/swatches/libidex_olive_green.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "muted olive green; normal saturated latex colour with realistic latex gloss",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#5C6B32"
+    },
+    {
+      "id": "libidex_nightshade_blue",
+      "manufacturer": "Libidex",
+      "display_name": "Nightshade Blue",
+      "category": "Standard",
+      "finish": "Standard",
+      "active": true,
+      "references": [
+        "/swatches/libidex_nightshade_blue.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "very dark inky blue; normal saturated latex colour with realistic latex gloss",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#27306B"
+    },
+    {
+      "id": "libidex_damson_purple",
+      "manufacturer": "Libidex",
+      "display_name": "Damson Purple",
+      "category": "Standard",
+      "finish": "Standard",
+      "active": true,
+      "references": [
+        "/swatches/libidex_damson_purple.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "dark plum-purple; normal saturated latex colour with realistic latex gloss",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#6B2D5C"
+    },
+    {
+      "id": "libidex_plum",
+      "manufacturer": "Libidex",
+      "display_name": "Plum",
+      "category": "Standard",
+      "finish": "Standard",
+      "active": true,
+      "references": [
+        "/swatches/libidex_plum.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "warm plum; normal saturated latex colour with realistic latex gloss",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#7A3E6F"
+    },
+    {
+      "id": "libidex_lilac",
+      "manufacturer": "Libidex",
+      "display_name": "Lilac",
+      "category": "Standard",
+      "finish": "Standard",
+      "active": true,
+      "references": [
+        "/swatches/libidex_lilac.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "soft lilac; normal saturated latex colour with realistic latex gloss",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#B794C9"
+    },
+    {
+      "id": "libidex_orange",
+      "manufacturer": "Libidex",
+      "display_name": "Orange",
+      "category": "Standard",
+      "finish": "Standard",
+      "active": true,
+      "references": [
+        "/swatches/libidex_orange.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "bright orange; normal saturated latex colour with realistic latex gloss",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#F07818"
+    },
+    {
+      "id": "libidex_atomic_tangerine",
+      "manufacturer": "Libidex",
+      "display_name": "Atomic Tangerine",
+      "category": "Standard",
+      "finish": "Standard",
+      "active": true,
+      "references": [
+        "/swatches/libidex_atomic_tangerine.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "vivid tangerine orange; normal saturated latex colour with realistic latex gloss",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#FF8A3D"
+    },
+    {
+      "id": "libidex_yellow",
+      "manufacturer": "Libidex",
+      "display_name": "Yellow",
+      "category": "Standard",
+      "finish": "Standard",
+      "active": true,
+      "references": [
+        "/swatches/libidex_yellow.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "bright primary yellow; normal saturated latex colour with realistic latex gloss",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#F5D21E"
+    },
+    {
+      "id": "libidex_baby_pink",
+      "manufacturer": "Libidex",
+      "display_name": "Baby Pink",
+      "category": "Standard",
+      "finish": "Standard",
+      "active": true,
+      "references": [
+        "/swatches/libidex_baby_pink.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "pale baby pink; normal saturated latex colour with realistic latex gloss",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#F6C1D4"
+    },
+    {
+      "id": "libidex_bubblegum_pink",
+      "manufacturer": "Libidex",
+      "display_name": "Bubblegum Pink",
+      "category": "Standard",
+      "finish": "Standard",
+      "active": true,
+      "references": [
+        "/swatches/libidex_bubblegum_pink.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "mid bubblegum pink; normal saturated latex colour with realistic latex gloss",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#F28AB8"
+    },
+    {
+      "id": "libidex_party_pink",
+      "manufacturer": "Libidex",
+      "display_name": "Party Pink",
+      "category": "Standard",
+      "finish": "Standard",
+      "active": true,
+      "references": [
+        "/swatches/libidex_party_pink.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "vivid party pink; normal saturated latex colour with realistic latex gloss",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#EF5BA8"
+    },
+    {
+      "id": "libidex_raspberry_pink",
+      "manufacturer": "Libidex",
+      "display_name": "Raspberry Pink",
+      "category": "Standard",
+      "finish": "Standard",
+      "active": true,
+      "references": [
+        "/swatches/libidex_raspberry_pink.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "deep raspberry pink; normal saturated latex colour with realistic latex gloss",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#D62E6E"
+    },
+    {
+      "id": "libidex_mannequin",
+      "manufacturer": "Libidex",
+      "display_name": "Mannequin",
+      "category": "Standard",
+      "finish": "Standard",
+      "active": true,
+      "references": [
+        "/swatches/libidex_mannequin.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "warm flesh-tone beige; normal saturated latex colour with realistic latex gloss",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#C8A28C"
+    },
+    {
+      "id": "libidex_sand",
+      "manufacturer": "Libidex",
+      "display_name": "Sand",
+      "category": "Standard",
+      "finish": "Standard",
+      "active": true,
+      "references": [
+        "/swatches/libidex_sand.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "pale sandy beige; normal saturated latex colour with realistic latex gloss",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#D8C39A"
+    },
+    {
+      "id": "libidex_chocolate",
+      "manufacturer": "Libidex",
+      "display_name": "Chocolate",
+      "category": "Standard",
+      "finish": "Standard",
+      "active": true,
+      "references": [
+        "/swatches/libidex_chocolate.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "deep chocolate brown; normal saturated latex colour with realistic latex gloss",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#5A3A28"
+    },
+    {
+      "id": "libidex_bronze",
+      "manufacturer": "Libidex",
+      "display_name": "Bronze",
+      "category": "Standard",
+      "finish": "Standard",
+      "active": true,
+      "references": [
+        "/swatches/libidex_bronze.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "warm bronze brown; normal saturated latex colour with realistic latex gloss",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#8C6239"
+    },
+    {
+      "id": "libidex_burnt_medical_orange",
+      "manufacturer": "Libidex",
+      "display_name": "Burnt Medical Orange",
+      "category": "Standard",
+      "finish": "Standard",
+      "active": true,
+      "references": [
+        "/swatches/libidex_burnt_medical_orange.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "dark burnt orange; normal saturated latex colour with realistic latex gloss",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#B8481F"
+    },
+    {
+      "id": "libidex_vibrant_bright_pink",
+      "manufacturer": "Libidex",
+      "display_name": "Vibrant Bright Pink",
+      "category": "Vibrant",
+      "finish": "Vibrant",
+      "active": true,
+      "references": [
+        "/swatches/libidex_vibrant_bright_pink.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "hyper-saturated hot pink; hyper-saturated latex colour, extremely vivid, with realistic latex gloss",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#FF2E88"
+    },
+    {
+      "id": "libidex_vibrant_lime_green",
+      "manufacturer": "Libidex",
+      "display_name": "Vibrant Lime Green",
+      "category": "Vibrant",
+      "finish": "Vibrant",
+      "active": true,
+      "references": [
+        "/swatches/libidex_vibrant_lime_green.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "hyper-saturated lime green; hyper-saturated latex colour, extremely vivid, with realistic latex gloss",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#A6E22A"
+    },
+    {
+      "id": "libidex_metallic_red",
+      "manufacturer": "Libidex",
+      "display_name": "Metallic Red",
+      "category": "Metallic",
+      "finish": "Metallic",
+      "active": true,
+      "references": [
+        "/swatches/libidex_metallic_red.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "rich deep red with subtle metallic depth; metallic latex - the colour carries subtle metallic depth and richness, but must NOT look like chrome or a mirror; reflections remain normal latex reflections",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#A01220"
+    },
+    {
+      "id": "libidex_metallic_blue",
+      "manufacturer": "Libidex",
+      "display_name": "Metallic Blue",
+      "category": "Metallic",
+      "finish": "Metallic",
+      "active": true,
+      "references": [
+        "/swatches/libidex_metallic_blue.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "deep metallic blue; metallic latex - the colour carries subtle metallic depth and richness, but must NOT look like chrome or a mirror; reflections remain normal latex reflections",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#1F3F8F"
+    },
+    {
+      "id": "libidex_metallic_petrol_blue",
+      "manufacturer": "Libidex",
+      "display_name": "Metallic Petrol Blue",
+      "category": "Metallic",
+      "finish": "Metallic",
+      "active": true,
+      "references": [
+        "/swatches/libidex_metallic_petrol_blue.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "dark blue-green petrol metallic; metallic latex - the colour carries subtle metallic depth and richness, but must NOT look like chrome or a mirror; reflections remain normal latex reflections",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#14606E"
+    },
+    {
+      "id": "libidex_metallic_peacock",
+      "manufacturer": "Libidex",
+      "display_name": "Metallic Peacock",
+      "category": "Metallic",
+      "finish": "Metallic",
+      "active": true,
+      "references": [
+        "/swatches/libidex_metallic_peacock.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "deep blue-green peacock metallic; metallic latex - the colour carries subtle metallic depth and richness, but must NOT look like chrome or a mirror; reflections remain normal latex reflections",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#0E6B74"
+    },
+    {
+      "id": "libidex_metallic_green",
+      "manufacturer": "Libidex",
+      "display_name": "Metallic Green",
+      "category": "Metallic",
+      "finish": "Metallic",
+      "active": true,
+      "references": [
+        "/swatches/libidex_metallic_green.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "deep metallic green; metallic latex - the colour carries subtle metallic depth and richness, but must NOT look like chrome or a mirror; reflections remain normal latex reflections",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#1F7A4D"
+    },
+    {
+      "id": "libidex_metallic_purple",
+      "manufacturer": "Libidex",
+      "display_name": "Metallic Purple",
+      "category": "Metallic",
+      "finish": "Metallic",
+      "active": true,
+      "references": [
+        "/swatches/libidex_metallic_purple.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "deep metallic purple; metallic latex - the colour carries subtle metallic depth and richness, but must NOT look like chrome or a mirror; reflections remain normal latex reflections",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#5B2E8C"
+    },
+    {
+      "id": "libidex_metallic_fuschia",
+      "manufacturer": "Libidex",
+      "display_name": "Metallic Fuschia",
+      "category": "Metallic",
+      "finish": "Metallic",
+      "active": true,
+      "references": [
+        "/swatches/libidex_metallic_fuschia.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "deep metallic fuschia pink; metallic latex - the colour carries subtle metallic depth and richness, but must NOT look like chrome or a mirror; reflections remain normal latex reflections",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#B3248C"
+    },
+    {
+      "id": "libidex_metallic_grey",
+      "manufacturer": "Libidex",
+      "display_name": "Metallic Grey",
+      "category": "Metallic",
+      "finish": "Metallic",
+      "active": true,
+      "references": [
+        "/swatches/libidex_metallic_grey.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "mid grey metallic; metallic latex - the colour carries subtle metallic depth and richness, but must NOT look like chrome or a mirror; reflections remain normal latex reflections",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#707782"
+    },
+    {
+      "id": "libidex_metallic_platinum",
+      "manufacturer": "Libidex",
+      "display_name": "Metallic Platinum",
+      "category": "Metallic",
+      "finish": "Metallic",
+      "active": true,
+      "references": [
+        "/swatches/libidex_metallic_platinum.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "light platinum silver metallic; metallic latex - the colour carries subtle metallic depth and richness, but must NOT look like chrome or a mirror; reflections remain normal latex reflections",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#B8BCC4"
+    },
+    {
+      "id": "libidex_metallic_pewter",
+      "manufacturer": "Libidex",
+      "display_name": "Metallic Pewter",
+      "category": "Metallic",
+      "finish": "Metallic",
+      "active": true,
+      "references": [
+        "/swatches/libidex_metallic_pewter.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "dark pewter grey metallic; metallic latex - the colour carries subtle metallic depth and richness, but must NOT look like chrome or a mirror; reflections remain normal latex reflections",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#5E646C"
+    },
+    {
+      "id": "libidex_metallic_old_gold",
+      "manufacturer": "Libidex",
+      "display_name": "Metallic Old Gold",
+      "category": "Metallic",
+      "finish": "Metallic",
+      "active": true,
+      "references": [
+        "/swatches/libidex_metallic_old_gold.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "antique old gold metallic; metallic latex - the colour carries subtle metallic depth and richness, but must NOT look like chrome or a mirror; reflections remain normal latex reflections",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#9C7A28"
+    },
+    {
+      "id": "libidex_metallic_electrum",
+      "manufacturer": "Libidex",
+      "display_name": "Metallic Electrum",
+      "category": "Metallic",
+      "finish": "Metallic",
+      "active": true,
+      "references": [
+        "/swatches/libidex_metallic_electrum.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "pale gold-green electrum metallic; metallic latex - the colour carries subtle metallic depth and richness, but must NOT look like chrome or a mirror; reflections remain normal latex reflections",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#B78C3C"
+    },
+    {
+      "id": "libidex_metallic_honey",
+      "manufacturer": "Libidex",
+      "display_name": "Metallic Honey",
+      "category": "Metallic",
+      "finish": "Metallic",
+      "active": true,
+      "references": [
+        "/swatches/libidex_metallic_honey.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "warm honey amber metallic; metallic latex - the colour carries subtle metallic depth and richness, but must NOT look like chrome or a mirror; reflections remain normal latex reflections",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#B06A24"
+    },
+    {
+      "id": "libidex_pearlsheen_silver",
+      "manufacturer": "Libidex",
+      "display_name": "Pearlsheen Silver",
+      "category": "Pearlsheen",
+      "finish": "Pearlsheen",
+      "active": true,
+      "references": [
+        "/swatches/libidex_pearlsheen_silver.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "pearlescent silver-white with soft iridescent sheen; pearlescent latex - soft iridescent pearly character; reads as pearlescent, never as ordinary flat colour and never as mirror chrome",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#D8D9DC"
+    },
+    {
+      "id": "libidex_pearlsheen_gold",
+      "manufacturer": "Libidex",
+      "display_name": "Pearlsheen Gold",
+      "category": "Pearlsheen",
+      "finish": "Pearlsheen",
+      "active": true,
+      "references": [
+        "/swatches/libidex_pearlsheen_gold.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "pearlescent soft gold; pearlescent latex - soft iridescent pearly character; reads as pearlescent, never as ordinary flat colour and never as mirror chrome",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#D9C28E"
+    },
+    {
+      "id": "libidex_pearlsheen_antique_gold",
+      "manufacturer": "Libidex",
+      "display_name": "Pearlsheen Antique Gold",
+      "category": "Pearlsheen",
+      "finish": "Pearlsheen",
+      "active": true,
+      "references": [
+        "/swatches/libidex_pearlsheen_antique_gold.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "pearlescent antique gold; pearlescent latex - soft iridescent pearly character; reads as pearlescent, never as ordinary flat colour and never as mirror chrome",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#BFA06A"
+    },
+    {
+      "id": "libidex_pearlsheen_emerald",
+      "manufacturer": "Libidex",
+      "display_name": "Pearlsheen Emerald",
+      "category": "Pearlsheen",
+      "finish": "Pearlsheen",
+      "active": true,
+      "references": [
+        "/swatches/libidex_pearlsheen_emerald.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "pearlescent soft emerald green; pearlescent latex - soft iridescent pearly character; reads as pearlescent, never as ordinary flat colour and never as mirror chrome",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#7FBFA8"
+    },
+    {
+      "id": "libidex_pearlsheen_purple",
+      "manufacturer": "Libidex",
+      "display_name": "Pearlsheen Purple",
+      "category": "Pearlsheen",
+      "finish": "Pearlsheen",
+      "active": true,
+      "references": [
+        "/swatches/libidex_pearlsheen_purple.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "pearlescent soft purple; pearlescent latex - soft iridescent pearly character; reads as pearlescent, never as ordinary flat colour and never as mirror chrome",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#9D84C4"
+    },
+    {
+      "id": "libidex_electric_blue",
+      "manufacturer": "Libidex",
+      "display_name": "Electric Blue",
+      "category": "Electric",
+      "finish": "Electric",
+      "active": true,
+      "references": [
+        "/swatches/libidex_electric_blue.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "hyper-vivid saturated electric blue; electric latex - extremely saturated, almost glowing intensity of colour with normal latex gloss",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#1447E6"
+    },
+    {
+      "id": "libidex_electric_leaf",
+      "manufacturer": "Libidex",
+      "display_name": "Electric Leaf",
+      "category": "Electric",
+      "finish": "Electric",
+      "active": true,
+      "references": [
+        "/swatches/libidex_electric_leaf.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "hyper-vivid electric leaf green; electric latex - extremely saturated, almost glowing intensity of colour with normal latex gloss",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#4DD23C"
+    },
+    {
+      "id": "libidex_electric_lilac",
+      "manufacturer": "Libidex",
+      "display_name": "Electric Lilac",
+      "category": "Electric",
+      "finish": "Electric",
+      "active": true,
+      "references": [
+        "/swatches/libidex_electric_lilac.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "hyper-vivid electric lilac; electric latex - extremely saturated, almost glowing intensity of colour with normal latex gloss",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#B84DF0"
+    },
+    {
+      "id": "libidex_electric_rose",
+      "manufacturer": "Libidex",
+      "display_name": "Electric Rose",
+      "category": "Electric",
+      "finish": "Electric",
+      "active": true,
+      "references": [
+        "/swatches/libidex_electric_rose.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "hyper-vivid electric rose pink; electric latex - extremely saturated, almost glowing intensity of colour with normal latex gloss",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#F0379A"
+    },
+    {
+      "id": "libidex_translucent_blue",
+      "manufacturer": "Libidex",
+      "display_name": "Translucent Blue",
+      "category": "Translucent",
+      "finish": "Translucent",
+      "active": true,
+      "references": [
+        "/swatches/libidex_translucent_blue.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "dense saturated translucent blue - predominantly solid at normal viewing distance, subtly translucent only in stretched or strongly highlighted areas; translucent latex - dense and saturated, predominantly solid at normal viewing distance, subtly translucent only in stretched or strongly highlighted areas; never glass-like, never clear plastic, no skin showing through",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#2E63C8"
+    },
+    {
+      "id": "libidex_translucent_natural",
+      "manufacturer": "Libidex",
+      "display_name": "Translucent Natural",
+      "category": "Translucent",
+      "finish": "Translucent",
+      "active": true,
+      "references": [
+        "/swatches/libidex_translucent_natural.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "milky natural translucent; translucent latex - dense and saturated, predominantly solid at normal viewing distance, subtly translucent only in stretched or strongly highlighted areas; never glass-like, never clear plastic, no skin showing through",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#E8D8C0"
+    },
+    {
+      "id": "libidex_translucent_natural_green",
+      "manufacturer": "Libidex",
+      "display_name": "Translucent Natural Green",
+      "category": "Translucent",
+      "finish": "Translucent",
+      "active": true,
+      "references": [
+        "/swatches/libidex_translucent_natural_green.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "milky natural green translucent; translucent latex - dense and saturated, predominantly solid at normal viewing distance, subtly translucent only in stretched or strongly highlighted areas; never glass-like, never clear plastic, no skin showing through",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#7FBF8E"
+    },
+    {
+      "id": "libidex_translucent_olive",
+      "manufacturer": "Libidex",
+      "display_name": "Translucent Olive",
+      "category": "Translucent",
+      "finish": "Translucent",
+      "active": true,
+      "references": [
+        "/swatches/libidex_translucent_olive.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "muted olive translucent; translucent latex - dense and saturated, predominantly solid at normal viewing distance, subtly translucent only in stretched or strongly highlighted areas; never glass-like, never clear plastic, no skin showing through",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#7A8450"
+    },
+    {
+      "id": "libidex_translucent_smokey_black",
+      "manufacturer": "Libidex",
+      "display_name": "Translucent Smokey Black",
+      "category": "Translucent",
+      "finish": "Translucent",
+      "active": true,
+      "references": [
+        "/swatches/libidex_translucent_smokey_black.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "dark smokey translucent - dense, reads almost solid black with subtle translucency at highlights; translucent latex - dense and saturated, predominantly solid at normal viewing distance, subtly translucent only in stretched or strongly highlighted areas; never glass-like, never clear plastic, no skin showing through",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#3A3D42"
+    },
+    {
+      "id": "libidex_translucent_red",
+      "manufacturer": "Libidex",
+      "display_name": "Translucent Red",
+      "category": "Translucent",
+      "finish": "Translucent",
+      "active": true,
+      "references": [
+        "/swatches/libidex_translucent_red.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "dense translucent red; translucent latex - dense and saturated, predominantly solid at normal viewing distance, subtly translucent only in stretched or strongly highlighted areas; never glass-like, never clear plastic, no skin showing through",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#C0394A"
+    },
+    {
+      "id": "libidex_translucent_pink",
+      "manufacturer": "Libidex",
+      "display_name": "Translucent Pink",
+      "category": "Translucent",
+      "finish": "Translucent",
+      "active": true,
+      "references": [
+        "/swatches/libidex_translucent_pink.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "dense translucent pink; translucent latex - dense and saturated, predominantly solid at normal viewing distance, subtly translucent only in stretched or strongly highlighted areas; never glass-like, never clear plastic, no skin showing through",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#E893B8"
+    },
+    {
+      "id": "libidex_translucent_orange",
+      "manufacturer": "Libidex",
+      "display_name": "Translucent Orange",
+      "category": "Translucent",
+      "finish": "Translucent",
+      "active": true,
+      "references": [
+        "/swatches/libidex_translucent_orange.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "dense translucent orange; translucent latex - dense and saturated, predominantly solid at normal viewing distance, subtly translucent only in stretched or strongly highlighted areas; never glass-like, never clear plastic, no skin showing through",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#E8834A"
+    },
+    {
+      "id": "libidex_translucent_yellow",
+      "manufacturer": "Libidex",
+      "display_name": "Translucent Yellow",
+      "category": "Translucent",
+      "finish": "Translucent",
+      "active": true,
+      "references": [
+        "/swatches/libidex_translucent_yellow.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "dense translucent yellow; translucent latex - dense and saturated, predominantly solid at normal viewing distance, subtly translucent only in stretched or strongly highlighted areas; never glass-like, never clear plastic, no skin showing through",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#E8C84E"
+    },
+    {
+      "id": "libidex_translucent_lilac",
+      "manufacturer": "Libidex",
+      "display_name": "Translucent Lilac",
+      "category": "Translucent",
+      "finish": "Translucent",
+      "active": true,
+      "references": [
+        "/swatches/libidex_translucent_lilac.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "dense translucent lilac; translucent latex - dense and saturated, predominantly solid at normal viewing distance, subtly translucent only in stretched or strongly highlighted areas; never glass-like, never clear plastic, no skin showing through",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#A98CC8"
+    },
+    {
+      "id": "libidex_translucent_metallic",
+      "manufacturer": "Libidex",
+      "display_name": "Translucent Metallic",
+      "category": "Translucent",
+      "finish": "Translucent",
+      "active": true,
+      "references": [
+        "/swatches/libidex_translucent_metallic.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "silvery translucent metallic - dense silvery tone with subtle depth; translucent latex - dense and saturated, predominantly solid at normal viewing distance, subtly translucent only in stretched or strongly highlighted areas; never glass-like, never clear plastic, no skin showing through",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#7E8899"
+    },
+    {
+      "id": "libidex_semi_trans_flesh",
+      "manufacturer": "Libidex",
+      "display_name": "Semi Trans Flesh",
+      "category": "Semi-Translucent",
+      "finish": "Semi-Translucent",
+      "active": true,
+      "references": [
+        "/swatches/libidex_semi_trans_flesh.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "flesh-tone semi-transparent; semi-transparent latex - lighter and airier than fully solid latex; soft milky translucency, but still clearly a coloured latex panel, not clear plastic",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#E3BFA8"
+    },
+    {
+      "id": "libidex_semi_trans_red",
+      "manufacturer": "Libidex",
+      "display_name": "Semi Trans Red",
+      "category": "Semi-Translucent",
+      "finish": "Semi-Translucent",
+      "active": true,
+      "references": [
+        "/swatches/libidex_semi_trans_red.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "red semi-transparent; semi-transparent latex - lighter and airier than fully solid latex; soft milky translucency, but still clearly a coloured latex panel, not clear plastic",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#D64552"
+    },
+    {
+      "id": "libidex_semi_trans_yellow",
+      "manufacturer": "Libidex",
+      "display_name": "Semi Trans Yellow",
+      "category": "Semi-Translucent",
+      "finish": "Semi-Translucent",
+      "active": true,
+      "references": [
+        "/swatches/libidex_semi_trans_yellow.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "yellow semi-transparent; semi-transparent latex - lighter and airier than fully solid latex; soft milky translucency, but still clearly a coloured latex panel, not clear plastic",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#E6CD55"
+    },
+    {
+      "id": "libidex_semi_trans_cloud_grey",
+      "manufacturer": "Libidex",
+      "display_name": "Semi Trans. Cloud Grey",
+      "category": "Semi-Translucent",
+      "finish": "Semi-Translucent",
+      "active": true,
+      "references": [
+        "/swatches/libidex_semi_trans_cloud_grey.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "pale cloud grey semi-transparent; semi-transparent latex - lighter and airier than fully solid latex; soft milky translucency, but still clearly a coloured latex panel, not clear plastic",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#B8BCC2"
+    },
+    {
+      "id": "libidex_semi_transparent_mauve",
+      "manufacturer": "Libidex",
+      "display_name": "Semi Transparent Mauve",
+      "category": "Semi-Translucent",
+      "finish": "Semi-Translucent",
+      "active": true,
+      "references": [
+        "/swatches/libidex_semi_transparent_mauve.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "dusty mauve semi-transparent; semi-transparent latex - lighter and airier than fully solid latex; soft milky translucency, but still clearly a coloured latex panel, not clear plastic",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#9B7E94"
+    },
+    {
+      "id": "libidex_semi_trans_vibrant_green",
+      "manufacturer": "Libidex",
+      "display_name": "Semi Trans Vibrant Green",
+      "category": "Semi-Translucent",
+      "finish": "Semi-Translucent",
+      "active": true,
+      "references": [
+        "/swatches/libidex_semi_trans_vibrant_green.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "vivid green semi-transparent; semi-transparent latex - lighter and airier than fully solid latex; soft milky translucency, but still clearly a coloured latex panel, not clear plastic",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#3FD67A"
+    },
+    {
+      "id": "libidex_semi_trans_vibrant_magenta",
+      "manufacturer": "Libidex",
+      "display_name": "Semi Trans Vibrant Magenta",
+      "category": "Semi-Translucent",
+      "finish": "Semi-Translucent",
+      "active": true,
+      "references": [
+        "/swatches/libidex_semi_trans_vibrant_magenta.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "vivid magenta semi-transparent; semi-transparent latex - lighter and airier than fully solid latex; soft milky translucency, but still clearly a coloured latex panel, not clear plastic",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#E0449E"
+    },
+    {
+      "id": "libidex_semi_trans_vibrant_orange",
+      "manufacturer": "Libidex",
+      "display_name": "Semi Trans Vibrant Orange",
+      "category": "Semi-Translucent",
+      "finish": "Semi-Translucent",
+      "active": true,
+      "references": [
+        "/swatches/libidex_semi_trans_vibrant_orange.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "vivid orange semi-transparent; semi-transparent latex - lighter and airier than fully solid latex; soft milky translucency, but still clearly a coloured latex panel, not clear plastic",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#FF8040"
+    },
+    {
+      "id": "libidex_semi_trans_vibrant_red",
+      "manufacturer": "Libidex",
+      "display_name": "Semi Trans Vibrant Red",
+      "category": "Semi-Translucent",
+      "finish": "Semi-Translucent",
+      "active": true,
+      "references": [
+        "/swatches/libidex_semi_trans_vibrant_red.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "vivid red semi-transparent; semi-transparent latex - lighter and airier than fully solid latex; soft milky translucency, but still clearly a coloured latex panel, not clear plastic",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#F03A45"
+    },
+    {
+      "id": "libidex_semi_trans_vibrant_yellow",
+      "manufacturer": "Libidex",
+      "display_name": "Semi Trans Vibrant Yellow",
+      "category": "Semi-Translucent",
+      "finish": "Semi-Translucent",
+      "active": true,
+      "references": [
+        "/swatches/libidex_semi_trans_vibrant_yellow.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "vivid yellow semi-transparent; semi-transparent latex - lighter and airier than fully solid latex; soft milky translucency, but still clearly a coloured latex panel, not clear plastic",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#F5DC3C"
+    },
+    {
+      "id": "libidex_supatex_grey",
+      "manufacturer": "Libidex",
+      "display_name": "Supatex Grey",
+      "category": "Supatex",
+      "finish": "Supatex",
+      "active": true,
+      "references": [
+        "/swatches/libidex_supatex_grey.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "dark grey with Supatex extra-gloss finish; Supatex latex - exceptionally high-gloss surface, the shiniest latex finish; bold broad highlights with deep saturated colour",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#3E4148"
+    },
+    {
+      "id": "libidex_supatex_light_brown",
+      "manufacturer": "Libidex",
+      "display_name": "Supatex Light Brown",
+      "category": "Supatex",
+      "finish": "Supatex",
+      "active": true,
+      "references": [
+        "/swatches/libidex_supatex_light_brown.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "light brown with Supatex extra-gloss finish; Supatex latex - exceptionally high-gloss surface, the shiniest latex finish; bold broad highlights with deep saturated colour",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#8A6B52"
+    },
+    {
+      "id": "libidex_supatex_violet",
+      "manufacturer": "Libidex",
+      "display_name": "Supatex Violet",
+      "category": "Supatex",
+      "finish": "Supatex",
+      "active": true,
+      "references": [
+        "/swatches/libidex_supatex_violet.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "deep violet with Supatex extra-gloss finish; Supatex latex - exceptionally high-gloss surface, the shiniest latex finish; bold broad highlights with deep saturated colour",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#4E2E8C"
+    },
+    {
+      "id": "libidex_supatex_semi_transparent_aqua",
+      "manufacturer": "Libidex",
+      "display_name": "Supatex Semi-Transparent Aqua",
+      "category": "Supatex",
+      "finish": "Supatex",
+      "active": true,
+      "references": [
+        "/swatches/libidex_supatex_semi_transparent_aqua.png"
+      ],
+      "source_url": "https://libidex.com/",
+      "generation_guidance": "aqua semi-transparent with Supatex extra-gloss finish; Supatex latex - exceptionally high-gloss surface, the shiniest latex finish; bold broad highlights with deep saturated colour",
+      "reference_version": "libidex-chart-seed-v1",
+      "swatch_hex": "#63C8C0"
+    }
+  ]
+}

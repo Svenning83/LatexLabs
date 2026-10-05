@@ -1,0 +1,109 @@
+{
+  "id": "c",
+  "code": "C",
+  "name": "Technical Catsuit",
+  "title": "C \u00e2\u20ac\u201d Technical Catsuit",
+  "display_name": "Catsuit",
+  "descriptor": "Full-length",
+  "card_image": "/garments/catsuit.png?v=6",
+  "tagline": "Full-length technical catsuit. The LatexLabs flagship template.",
+  "construction": [
+    "full-length catsuit",
+    "long fitted sleeves",
+    "stand collar",
+    "full front zip",
+    "technical panel construction",
+    "integrated latex feet",
+    "realistic seams",
+    "close athletic fit"
+  ],
+  "construction_prompt": "A full-length latex catsuit with long fitted sleeves, a stand collar, a full-length front zip running from collar to crotch, integrated latex feet (latex covers the feet like a sock - no bare skin at the feet), realistic glued latex seams, and a close athletic fit. The construction features a technical chevron panel design: contoured V-shaped panels radiate across the chest, waist and hips, plus a strong central zip column, inner-leg panels and a centre-back stripe.",
+  "master_reference": "references/garments/01_C_Technical_Catsuit_Master.png",
+  "template_version": "c-master-v1",
+  "views": [
+    {
+      "id": "front",
+      "label": "FRONT VIEW"
+    },
+    {
+      "id": "back",
+      "label": "BACK VIEW"
+    },
+    {
+      "id": "three_quarter",
+      "label": "3/4 VIEW"
+    },
+    {
+      "id": "side",
+      "label": "SIDE VIEW"
+    }
+  ],
+  "details": [
+    {
+      "id": "collar_zip",
+      "label": "COLLAR & ZIP DETAIL"
+    },
+    {
+      "id": "shoulder_panel",
+      "label": "SHOULDER & CHEST PANEL DETAIL"
+    },
+    {
+      "id": "hip_panel",
+      "label": "HIP & WAIST PANEL DETAIL"
+    },
+    {
+      "id": "foot",
+      "label": "INTEGRATED FOOT DETAIL"
+    }
+  ],
+  "zones": {
+    "core": {
+      "label": "Core structure",
+      "parts": [
+        "central front zip column from collar through crotch",
+        "stand collar",
+        "centre back stripe running down the spine",
+        "inner leg panels",
+        "crotch panel"
+      ]
+    },
+    "accent": {
+      "label": "Chevron accent panels",
+      "parts": [
+        "chest chevron panels",
+        "torso side chevron panels",
+        "waist and hip chevron panels",
+        "back chevron panels",
+        "thigh accent panels"
+      ]
+    },
+    "shell": {
+      "label": "Main body panels",
+      "parts": [
+        "main chest panels",
+        "shoulders",
+        "sleeves and arms",
+        "outer legs and calves",
+        "seat",
+        "integrated feet"
+      ]
+    }
+  },
+  "mapping": {
+    "1": {
+      "shell": 0,
+      "accent": 0,
+      "core": 0
+    },
+    "2": {
+      "shell": 0,
+      "accent": 0,
+      "core": 1
+    },
+    "3": {
+      "shell": 1,
+      "accent": 0,
+      "core": 2
+    }
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "id": "s1",
+  "code": "S1",
+  "name": "Technical Singlet",
+  "title": "S1 \u00e2\u20ac\u201d Technical Singlet",
+  "display_name": "Singlet",
+  "descriptor": "Sleeveless",
+  "card_image": "/garments/singlet.png?v=6",
+  "tagline": "Sleeveless technical singlet with short legs. Same construction language as C.",
+  "construction": [
+    "sleeveless singlet",
+    "stand collar",
+    "full front zip",
+    "technical panel construction",
+    "short legs",
+    "clean leg openings",
+    "realistic seams",
+    "close athletic fit"
+  ],
+  "construction_prompt": "A sleeveless latex singlet with a stand collar, a full-length front zip running from collar to crotch, short legs ending mid-thigh with clean latex-finished leg openings, realistic glued latex seams, and a close athletic fit. Same technical chevron panel design language as the C catsuit: contoured V-shaped panels across the chest, torso and hips, a strong central zip column and inner thigh panels. Arms and shoulders are bare skin; the garment ends at the shoulders.",
+  "master_reference": "references/garments/02_S1_Technical_Singlet_Master.png",
+  "template_version": "s1-master-v1",
+  "views": [
+    {
+      "id": "front",
+      "label": "FRONT VIEW"
+    },
+    {
+      "id": "back",
+      "label": "BACK VIEW"
+    },
+    {
+      "id": "three_quarter",
+      "label": "3/4 VIEW"
+    },
+    {
+      "id": "side",
+      "label": "SIDE VIEW"
+    }
+  ],
+  "details": [
+    {
+      "id": "collar_zip",
+      "label": "COLLAR & ZIP DETAIL"
+    },
+    {
+      "id": "shoulder_opening",
+      "label": "SHOULDER OPENING DETAIL"
+    },
+    {
+      "id": "hip_panel",
+      "label": "HIP PANEL DETAIL"
+    },
+    {
+      "id": "leg_opening",
+      "label": "LEG OPENING DETAIL"
+    }
+  ],
+  "zones": {
+    "core": {
+      "label": "Core structure",
+      "parts": [
+        "central front zip column from collar through crotch",
+        "stand collar",
+        "centre back stripe",
+        "inner thigh panels",
+        "crotch panel"
+      ]
+    },
+    "accent": {
+      "label": "Chevron accent panels",
+      "parts": [
+        "chest chevron panels",
+        "torso side chevron panels",
+        "waist and hip chevron panels",
+        "back chevron panels",
+        "thigh accent panels"
+      ]
+    },
+    "shell": {
+      "label": "Main body panels",
+      "parts": [
+        "main chest panels",
+        "shoulder yoke",
+        "outer thigh panels",
+        "seat"
+      ]
+    }
+  },
+  "mapping": {
+    "1": {
+      "shell": 0,
+      "accent": 0,
+      "core": 0
+    },
+    "2": {
+      "shell": 0,
+      "accent": 0,
+      "core": 1
+    },
+    "3": {
+      "shell": 1,
+      "accent": 0,
+      "core": 2
+    }
+  }
+}

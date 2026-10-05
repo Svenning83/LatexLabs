@@ -1,0 +1,103 @@
+{
+  "id": "sh1",
+  "code": "SH1",
+  "name": "Technical Shorts",
+  "title": "SH1 \u00e2\u20ac\u201d Technical Shorts",
+  "display_name": "Shorts",
+  "descriptor": "Mid-thigh",
+  "card_image": "/garments/shorts.png?v=6",
+  "tagline": "Mid-thigh technical shorts. Same construction language as C and S1.",
+  "construction": [
+    "mid-thigh shorts",
+    "waistband",
+    "full front zip",
+    "front/side panel construction",
+    "clean leg openings",
+    "realistic seams",
+    "close athletic fit"
+  ],
+  "construction_prompt": "A pair of mid-thigh latex shorts with a structured waistband, a front zip fly, clean latex-finished leg openings, realistic glued latex seams, and a close athletic fit. Same technical chevron panel design language as the C catsuit and S1 singlet: contoured V-shaped panels wrapping the hips, thighs and seat, a strong central front zip column and inner thigh panels. Worn alone - the model's torso, arms and legs are bare skin.",
+  "master_reference": "references/garments/03_SH1_Technical_Shorts_Master.png",
+  "template_version": "sh1-master-v1",
+  "views": [
+    {
+      "id": "front",
+      "label": "FRONT VIEW"
+    },
+    {
+      "id": "back",
+      "label": "BACK VIEW"
+    },
+    {
+      "id": "three_quarter",
+      "label": "3/4 VIEW"
+    },
+    {
+      "id": "side",
+      "label": "SIDE VIEW"
+    }
+  ],
+  "details": [
+    {
+      "id": "waistband_zip",
+      "label": "WAISTBAND & ZIP DETAIL"
+    },
+    {
+      "id": "side_panel",
+      "label": "SIDE PANEL DETAIL"
+    },
+    {
+      "id": "rear_panel",
+      "label": "REAR PANEL DETAIL"
+    },
+    {
+      "id": "leg_opening",
+      "label": "LEG OPENING DETAIL"
+    }
+  ],
+  "zones": {
+    "core": {
+      "label": "Core structure",
+      "parts": [
+        "waistband",
+        "central front zip fly column",
+        "inner thigh panels",
+        "centre rear seam panel"
+      ]
+    },
+    "accent": {
+      "label": "Chevron accent panels",
+      "parts": [
+        "front hip chevron panels",
+        "side chevron panels",
+        "rear chevron panels",
+        "thigh accent panels"
+      ]
+    },
+    "shell": {
+      "label": "Main body panels",
+      "parts": [
+        "main front panels",
+        "outer thigh panels",
+        "seat"
+      ]
+    }
+  },
+  "mapping": {
+    "1": {
+      "shell": 0,
+      "accent": 0,
+      "core": 0
+    },
+    "2": {
+      "shell": 0,
+      "accent": 0,
+      "core": 1
+    },
+    "3": {
+      "shell": 1,
+      "accent": 0,
+      "core": 2
+    }
+  }
+}
