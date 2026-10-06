@@ -15,7 +15,6 @@ interface GarmentCard {
 function GarmentStep() {
   const router = useRouter();
   const [garments, setGarments] = useState<GarmentCard[]>([]);
-  const [selected, setSelected] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("/api/garments")
@@ -39,8 +38,8 @@ function GarmentStep() {
           {garments.map((g) => (
             <button
               key={g.id}
-              className={`garment-card garment-card-tall ${selected === g.id ? "selected" : ""}`}
-              onClick={() => setSelected(g.id)}
+              className="garment-card garment-card-tall"
+              onClick={() => router.push(`/create/colours?garment=${g.id}`)}
             >
               <div className="g-img">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -52,16 +51,6 @@ function GarmentStep() {
               </div>
             </button>
           ))}
-        </div>
-
-        <div className="step-actions">
-          <button
-            className="btn btn-primary"
-            disabled={!selected}
-            onClick={() => router.push(`/create/colours?garment=${selected}`)}
-          >
-            Continue →
-          </button>
         </div>
       </section>
     </div>

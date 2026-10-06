@@ -98,20 +98,19 @@ function ColourStep() {
           <div className="micro micro-faint">02 — COLOURS</div>
           <h2>Choose your colours.</h2>
           <p className="step-sub">
-            Explore up to three colours and see how they work together on your
+            Select up to three colours and see how they work together on your
             chosen garment.
-            {garmentName && (
-              <>
-                {" "}
-                <span className="micro" style={{ color: "var(--muted)" }}>
-                  GARMENT — {garmentName.toUpperCase()}
-                </span>{" "}
-                <Link className="back-link" href="/create">
-                  change
-                </Link>
-              </>
-            )}
           </p>
+          {garmentName && (
+            <div className="row" style={{ marginTop: 14, gap: 16 }}>
+              <span className="micro micro-faint">
+                GARMENT — {garmentName.toUpperCase()}
+              </span>
+              <Link className="back-link" href="/create">
+                ← Change
+              </Link>
+            </div>
+          )}
         </div>
 
         <div className="wheel-layout">
