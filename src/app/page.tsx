@@ -1,14 +1,10 @@
 import Link from "next/link";
 import Footer from "@/components/Footer";
-import Nav from "@/components/Nav";
+import Logo from "@/components/Logo";
 
 export default function LandingPage() {
   return (
     <>
-      <div className="container">
-        <Nav right="COLOUR VISUALISATION" />
-      </div>
-
       <section className="home-hero">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -17,6 +13,10 @@ export default function LandingPage() {
           alt="Glossy red and yellow latex catsuit portrait"
         />
         <div className="home-hero-scrim" />
+        <header className="home-hero-nav">
+          <Logo />
+          <span className="micro micro-faint">COLOUR VISUALISATION</span>
+        </header>
         <div className="container home-hero-inner">
           <div className="home-hero-copy">
             <h1>Explore latex.</h1>

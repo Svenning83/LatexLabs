@@ -1,4 +1,4 @@
-export default function Logo({ height = 20 }: { height?: number }) {
+export default function Logo({ height = 40 }: { height?: number }) {
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img

@@ -61,7 +61,7 @@ button { font-family: inherit; }
   padding: 26px 0;
   border-bottom: 1px solid var(--line);
 }
-.nav-logo img { height: 20px; display: block; }
+.nav-logo img { height: 40px; display: block; }
 
 /* ---------- buttons ---------- */
 .btn {
@@ -130,12 +130,20 @@ button { font-family: inherit; }
 /* ---------- v2 homepage ---------- */
 .home-hero {
   position: relative;
-  min-height: calc(100vh - 73px);
-  min-height: calc(100svh - 73px);
+  min-height: 100vh;
+  min-height: 100svh;
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
   overflow: hidden;
   border-bottom: 1px solid var(--line);
+}
+.home-hero-nav {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 40px;
 }
 .home-hero-img {
   position: absolute;
@@ -156,6 +164,9 @@ button { font-family: inherit; }
   position: relative;
   z-index: 1;
   width: 100%;
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
 }
 .home-hero-copy { padding: 0 0 88px; }
 .home-hero h1 {
