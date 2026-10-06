@@ -361,6 +361,12 @@ button { font-family: inherit; }
   .wheel-layout { grid-template-columns: 1fr; }
   .wheel-side { position: static; }
   .home-about-grid { grid-template-columns: 1fr; }
+  .home-hero-nav {
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    padding: 20px 24px;
+  }
+  .home-hero-img { object-position: 62% 18%; }
 }
 
 /* ---------- garment cards ---------- */
