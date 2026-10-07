@@ -9,6 +9,7 @@
     "seed:colours": "python scripts/seed-colours.py"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "@vercel/blob": "^2.8.1",
     "next": "15.5.27",
     "react": "19.1.1",
