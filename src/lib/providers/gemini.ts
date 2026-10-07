@@ -21,7 +21,9 @@ export const geminiProvider: ImageProvider = {
     const parts: unknown[] = [{ text: req.prompt }];
     for (const ref of req.referenceImages) {
       const abs = path.join(process.cwd(), ref.path);
-      if (!fs.existsSync(abs)) continue;
+      if (!fs.existsSync(abs)) {
+        throw new Error(`Reference image missing: ${ref.path} (check outputFileTracingIncludes on serverless)`);
+      }
       parts.push({ text: `${ref.role.toUpperCase()} REFERENCE - ${ref.description}:` });
       parts.push({
         inlineData: { mimeType: mime(abs), data: fs.readFileSync(abs).toString("base64") },

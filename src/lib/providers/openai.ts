@@ -20,7 +20,9 @@ export const openaiProvider: ImageProvider = {
     if (MODEL === "gpt-image-1") form.append("input_fidelity", "high");
     for (const ref of req.referenceImages) {
       const abs = path.join(process.cwd(), ref.path);
-      if (!fs.existsSync(abs)) continue;
+      if (!fs.existsSync(abs)) {
+        throw new Error(`Reference image missing: ${ref.path} (check outputFileTracingIncludes on serverless)`);
+      }
       const buf = fs.readFileSync(abs);
       form.append("image[]", new Blob([buf], { type: "image/png" }), path.basename(abs));
     }
