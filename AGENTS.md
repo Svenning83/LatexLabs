@@ -30,6 +30,13 @@ Verify: `npx tsc --noEmit`, `npm run build`.
 
 ## Notes
 
-- Runtime studies land in `data/studies/` (gitignored): `<id>.json` + `<id>.png`.
+- Runtime studies: **local disk** at `data/studies/` (gitignored) in dev, or
+  **Vercel Blob** when `BLOB_READ_WRITE_TOKEN` is set (deployed). Storage is
+  dual-mode in `src/lib/studies.ts` — all reads/writes are async because of it.
+- Generation is **awaited inside the POST** (serverless-safe; no detached
+  promises). Progress UI is a timed estimate from `GET /api/config`
+  (`expected_seconds` per quality tier) — providers report no mid-call status.
+- Image provider: `gpt-image-2.5-sunburst` via Images API `edits` endpoint.
+  `input_fidelity` is only sent for `gpt-image-1` (2.x rejects the param).
 - No API keys set → `mock` provider returns canonical study sheets by colour count.
 - npm audit: remaining PostCSS advisories are build-time-only; Next pinned at 15.5.x.

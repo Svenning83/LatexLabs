@@ -6,7 +6,7 @@ import type {
 } from "./types";
 import { describeMapping } from "./mapping";
 
-export const PROMPT_VERSION = "study-prompt-v1";
+export const PROMPT_VERSION = "study-prompt-v2";
 
 const COUNT_WORDS = ["", "ONE", "TWO", "THREE"];
 
@@ -62,6 +62,122 @@ export interface BuiltPrompt {
   variantLine: string;
 }
 
+/* ------------------------------------------------------------------ */
+/* C Technical catsuit - canonical v2 prompt.                          */
+/* One cohesive studio composition (4 views + 4 detail crops), no      */
+/* rendered text/branding. Colour section adapts to 1/2/3 selections.  */
+/* ------------------------------------------------------------------ */
+
+function catsuitColourSection(colours: ColourRecord[]): string {
+  const n = colours.length;
+  const names = colours.map((c) => c.display_name);
+  const [c1, c2, c3] = names;
+  const colourList = names
+    .map((s, i) => `${i + 1}. ${s} (${colours[i].category.toLowerCase()} latex)`)
+    .join("\n");
+  const distinct =
+    n > 1
+      ? `\n\n${names.join(", ")} are ${COUNT_WORDS[n].toLowerCase()} DIFFERENT colours. Each one must be clearly visible in its assigned areas and remain visually distinct from the others. Never merge, blend or drop a colour, and never let one colour read as a shade of another.`
+      : "";
+  if (n === 1) {
+    return `COLOURS:
+Use exactly this one selected colour:
+${colourList}
+
+Apply it consistently across all four views: the entire catsuit is ${c1} - central body, outer side areas and stripe all share the same colour. Colour boundaries are invisible; only highlights, shadows and creasing differentiate the surface. Do not introduce additional colours, gradients or colour bleeding.`;
+  }
+  if (n === 2) {
+    return `COLOURS:
+Use exactly these two selected colours:
+${colourList}
+
+Apply them consistently across all four views:
+- ${c1} = primary central/main body colour AND the narrow stripe (the stripe shares the central colour)
+- ${c2} = broad outer side areas running down the outside of the arms and legs
+
+Both colours must be clearly visible. The arrangement must remain consistent from front to rear and through the side and three-quarter views. Do not introduce additional colours, gradients, a contrasting stripe or colour bleeding.${distinct}`;
+  }
+  return `COLOURS:
+Use exactly these three selected colours:
+${colourList}
+
+Apply them consistently across all four views:
+- ${c1} = primary central/main body colour
+- ${c2} = broad outer side areas running down the outside of the arms and legs
+- ${c3} = one narrow, clearly visible stripe between the outer colour and the central colour
+
+All three colours must be clearly visible. The arrangement must remain consistent from front to rear and through the side and three-quarter views. Do not introduce additional colours, gradients or colour bleeding.${distinct}`;
+}
+
+function buildCatsuitPrompt(colours: ColourRecord[]): string {
+  const materialNotes = colours
+    .map((c, i) => `- COLOUR ${i + 1} "${c.display_name}" (${c.category} finish): ${c.generation_guidance}`)
+    .join("\n");
+
+  return `Create a high-end, photorealistic studio product photoshoot of a single adult male model wearing a C Technical latex catsuit.
+
+The final image is ONE COHESIVE STUDIO PHOTOGRAPHIC COMPOSITION, not a collage of separately generated images.
+
+FOUR FULL-BODY VIEWS:
+Show the SAME model wearing the SAME catsuit in four coordinated views:
+1. Front view
+2. Rear view
+3. Side / profile view
+4. Three-quarter front view
+
+The four views should appear together as if photographed during the same professional studio photoshoot, with the same model, physical proportions, garment, lighting, camera quality, background and consistent scale.
+
+The four views must not look like separate cut-out images. They should share a continuous visual environment with consistent studio lighting, floor, shadows and atmosphere. Avoid obvious vertical panel joins or hard compositing boundaries.
+
+MODEL:
+Adult male with neutral, natural, athletic proportions. Moderately broad shoulders, natural chest, relatively straight waist and understated hips. Ordinary fit adult man rather than bodybuilder or fashion model. Neutral expression and relaxed professional product-photography poses. Keep the model visually secondary to the garment. Bare feet are acceptable. No shoes, boots, socks or accessories.
+
+GARMENT:
+Full-length, skin-tight latex catsuit with long sleeves ending at the wrists and full-length legs ending at the ankles. Use the C Technical catsuit silhouette established for LatexLabs. The garment should fit naturally and realistically, gently tensioned against the body without excessive compression.
+
+The catsuit is made from glued sheet latex, not sewn fabric. The neckline is a simple low rounded opening cut directly through the latex sheet. Wrists and ankles have simple open cut edges directly through the latex sheet.
+
+NO collar, neck band, cuffs, waistband, piping, folded edges, reinforced edges, facing, zips, buttons, fasteners or decorative construction. Avoid visible stitching and obvious physical seams.
+
+Colour boundaries are changes of colour within the same continuous latex surface. They must NOT appear as raised panels, seams, piping or separate pieces. The area around the neckline must remain clean and simple. Do not create collarbone lines, shoulder seams, curved decorative lines or secondary outlines around the neckline.
+
+${catsuitColourSection(colours)}
+
+MATERIAL INTERPRETATION PER COLOUR (reference swatches are authoritative):
+${materialNotes}
+
+LATEX MATERIAL:
+Realistic high-quality latex rubber with a refined glossy/satin finish. Clearly latex: smooth, slightly reflective and luxurious, but not wet, chrome-like or mirror-polished. Broad controlled studio reflections rather than harsh white hotspots. Subtle, natural irregular creasing where the latex bends around elbows, knees, hips and other areas of movement. Avoid excessive wrinkles or repeated symmetrical wrinkle patterns.
+
+STUDIO:
+One continuous premium studio environment. Dark charcoal-to-grey gradient background with a slightly lighter area behind the models. Neutral grey studio floor with subtle realistic grounding shadows. Soft cinematic studio lighting consistent across all four views.
+
+COMPOSITION:
+The four full-body views occupy the main large area and are visually integrated into one continuous photographic presentation rather than appearing as four unrelated rectangular photographs. Maintain generous spacing between figures while allowing the studio background and floor to visually continue behind and around them.
+
+On the RIGHT side of the composition, include four smaller close-up views arranged vertically.
+
+DETAIL VIEW 1 - NECK / SHOULDER:
+Close-up of the neckline, upper chest and shoulder showing the latex finish and transition between the selected colours.
+
+DETAIL VIEW 2 - ARM / WRIST:
+Close-up of the sleeve and wrist showing the latex surface, colour arrangement and simple open wrist edge.
+
+DETAIL VIEW 3 - LEG / KNEE / ANKLE:
+Close-up showing the leg, colour arrangement, subtle latex creasing and simple ankle opening.
+
+DETAIL VIEW 4 - REAR HIP / SEAT:
+Close-up of the rear hip and seat showing how the colour design wraps around the back of the garment.
+
+The close-ups should appear to come from the SAME garment and SAME photoshoot as the four full-body views. They should be clean photographic details, not technical illustrations.
+
+IMPORTANT:
+The final image must contain NO text, NO labels, NO logos, NO colour swatches, NO captions, NO measurements and NO watermarks. LatexLabs will add all interface elements, colour names and controls separately.
+
+AVOID:
+separate collage panels, obvious image joins, mismatched backgrounds, inconsistent lighting, different models, different body proportions, different garments, mannequin, fantasy anatomy, exaggerated muscles, exaggerated hips, feminine proportions, bodybuilder physique, fashion accessories, shoes, boots, socks, zips, collars, cuffs, waistbands, stitching, decorative seams, raised colour panels, piping, excessive wrinkles, wet plastic, chrome reflections, harsh highlights, extra colours, text, logos, labels, watermarks or props.`;
+}
+
 export function buildStudyPrompt(
   garment: GarmentTemplate,
   colours: ColourRecord[],
@@ -73,6 +189,31 @@ export function buildStudyPrompt(
   const variantLine = n === 1 ? "(ONE COLOUR VARIANT)" : n === 2 ? "(TWO COLOUR VARIANT)" : "(THREE COLOUR VARIANT)";
 
   const detailLabels = garment.details.map((d) => d.label).join(", ");
+
+  if (garment.id === "c") {
+    const referenceImages: ReferenceImage[] = [
+      {
+        path: `public/garments/catsuit.png`,
+        role: "garment",
+        description: `${garment.title} garment reference (construction and colour-arrangement example)`,
+      },
+    ];
+    colours.forEach((c, i) => {
+      const rel = c.references[0];
+      if (rel) {
+        referenceImages.push({
+          path: `public${rel.startsWith("/") ? rel : `/${rel}`}`,
+          role: "colour",
+          description: `colour ${i + 1} swatch: ${c.display_name}`,
+        });
+      }
+    });
+    return {
+      prompt: buildCatsuitPrompt(colours),
+      referenceImages,
+      variantLine,
+    };
+  }
 
   const prompt = `Create a LatexLabs Colour Study: a single premium visualisation sheet for a latex garment colour combination. This is a controlled visualisation task - the garment construction, panel layout and colour assignments below are fixed decisions; render them faithfully, do not redesign them.
 

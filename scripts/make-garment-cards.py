@@ -61,12 +61,12 @@ def edge_pad(im, target_w):
 
 # ---- garment cards ----------------------------------------------------------
 # Card imagery is now supplied as dedicated standalone garment renders in the
-# canonical references folder (2:3 portrait, consistent dark backdrop).
+# canonical references folder (4:5 portrait, consistent dark backdrop).
 CANON = os.path.join(ROOT, "..", "LatexLabs_Dev_Canonical_References")
 CARDS = {
     "catsuit.png": "Glossy Black, Red and Yellow Catsuit.png",
-    "singlet.png": "Glossy Black, Red and Yellow Singlet.png",
-    "shorts.png": "Red Yellow Black Athletic Shorts.png",
+    "singlet.png": "Glossy Black, Red and Yellow Wrestling Singlet.png",
+    "shorts.png": "Glossy Black Shorts with Red and Yellow Stripes.png",
 }
 import shutil
 for out, src in CARDS.items():

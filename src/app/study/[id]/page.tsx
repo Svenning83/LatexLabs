@@ -15,7 +15,7 @@ export default async function StudyPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const study = getStudy(id);
+  const study = await getStudy(id);
   if (!study) notFound();
 
   const garmentName =
@@ -83,13 +83,11 @@ export default async function StudyPage({
             studyId={study.study_id}
             garmentId={study.garment_template}
             colourIds={study.selected_colours}
+            colourNames={[garmentName, ...study.selected_colour_names]}
           />
         </div>
 
         <div className="study-foot">
-          <div className="micro micro-faint">
-            COLOURS REFERENCED FROM {study.manufacturer.toUpperCase()} · REAL MATERIAL REFERENCES
-          </div>
           <div className="micro micro-faint">
             STUDY {study.study_id.toUpperCase()}
             {" · "}

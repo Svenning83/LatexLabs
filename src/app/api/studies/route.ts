@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createStudy, runGeneration } from "@/lib/pipeline";
+import { getStudy } from "@/lib/studies";
 
 export const runtime = "nodejs";
+export const maxDuration = 300;
 
 export async function POST(req: NextRequest) {
   try {
@@ -17,11 +19,17 @@ export async function POST(req: NextRequest) {
         { status: 400 },
       );
     }
-    const study = createStudy(garmentId, colourIds);
-    // Fire-and-forget: the pipeline persists each stage on the study record,
-    // and clients poll GET /api/studies/[id] for progress.
-    void runGeneration(study.study_id);
-    return NextResponse.json({ study_id: study.study_id }, { status: 201 });
+    const study = await createStudy(garmentId, colourIds);
+    // Awaited inline: generations are short (~15-110s by quality tier) and the
+    // request must carry the work on serverless, where detached promises die.
+    // Stages still persist on the study record for audit/debugging.
+    await runGeneration(study.study_id);
+    const final = await getStudy(study.study_id);
+    const status = final?.status ?? "failed";
+    return NextResponse.json(
+      { study_id: study.study_id, status, error: final?.error ?? null },
+      { status: status === "ready" ? 201 : 502 },
+    );
   } catch (err) {
     return NextResponse.json(
       { error: err instanceof Error ? err.message : "Failed to create study" },

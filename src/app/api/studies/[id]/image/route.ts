@@ -9,7 +9,11 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> },
 ) {
   const { id } = await params;
-  const study = getStudy(id);
+  const study = await getStudy(id);
+  if (study?.generated_image?.startsWith("http")) {
+    // Blob-hosted image: hand the URL to the client rather than proxying bytes.
+    return NextResponse.redirect(study.generated_image, 307);
+  }
   const p = imagePathFor(id);
   if (!study || !fs.existsSync(p)) {
     return NextResponse.json({ error: "Image not found" }, { status: 404 });

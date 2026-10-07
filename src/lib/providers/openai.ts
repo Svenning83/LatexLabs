@@ -2,7 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 import type { GenerationRequest, ImageProvider } from "../types";
 
-const MODEL = process.env.LATEXLABS_OPENAI_MODEL || "gpt-image-1";
+const MODEL = process.env.LATEXLABS_OPENAI_MODEL || "gpt-image-2.5-sunburst";
+const QUALITY = process.env.LATEXLABS_OPENAI_QUALITY || "auto";
 
 export const openaiProvider: ImageProvider = {
   name: "openai",
@@ -15,6 +16,8 @@ export const openaiProvider: ImageProvider = {
     form.append("model", MODEL);
     form.append("prompt", req.prompt);
     form.append("size", "1536x1024");
+    form.append("quality", QUALITY);
+    if (MODEL === "gpt-image-1") form.append("input_fidelity", "high");
     for (const ref of req.referenceImages) {
       const abs = path.join(process.cwd(), ref.path);
       if (!fs.existsSync(abs)) continue;

@@ -1,9 +1,10 @@
 "use client";
 
-import { Suspense, useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import ColourWheel from "@/components/ColourWheel";
+import GenerationOverlay from "@/components/GenerationOverlay";
 import Nav from "@/components/Nav";
 import type { ColourRecord } from "@/lib/types";
 
@@ -33,6 +34,9 @@ function ColourStep() {
   const [finish, setFinish] = useState<string | null>(null);
   const [creating, setCreating] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [expectedSecs, setExpectedSecs] = useState(25);
+  const [attempt, setAttempt] = useState(0);
+  const posting = useRef(false);
 
   useEffect(() => {
     if (!garmentId) router.replace("/create");
@@ -50,6 +54,9 @@ function ColourStep() {
       const g = (d.garments as GarmentCard[]).find((x) => x.id === garmentId);
       if (g) setGarmentName(g.display_name);
     });
+    fetch("/api/config").then((r) => r.json()).then((d) => {
+      if (d.expected_seconds) setExpectedSecs(d.expected_seconds);
+    }).catch(() => {});
   }, [garmentId]);
 
   const byId = useMemo(() => new Map(colours.map((c) => [c.id, c])), [colours]);
@@ -71,10 +78,9 @@ function ColourStep() {
       s.includes(id) ? s.filter((x) => x !== id) : s.length < 3 ? [...s, id] : s,
     );
 
-  const create = async () => {
-    if (!garmentId || selected.length === 0 || creating) return;
-    setCreating(true);
-    setError(null);
+  const doPost = async () => {
+    if (posting.current) return;
+    posting.current = true;
     try {
       const res = await fetch("/api/studies", {
         method: "POST",
@@ -82,12 +88,28 @@ function ColourStep() {
         body: JSON.stringify({ garment_id: garmentId, colour_ids: selected }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Failed to create study");
+      if (!res.ok || data.status === "failed") {
+        throw new Error(data.error || "Generation failed");
+      }
       router.push(`/study/${data.study_id}`);
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Failed to create study");
-      setCreating(false);
+      setError(e instanceof Error ? e.message : "Generation failed");
+    } finally {
+      posting.current = false;
     }
+  };
+
+  const create = () => {
+    if (!garmentId || selected.length === 0) return;
+    setCreating(true);
+    setError(null);
+    void doPost();
+  };
+
+  const retry = () => {
+    setError(null);
+    setAttempt((a) => a + 1);
+    void doPost();
   };
 
   return (
@@ -158,7 +180,6 @@ function ColourStep() {
             >
               {creating ? "Creating…" : "Create →"}
             </button>
-            {error && <div className="progress-error">{error}</div>}
 
             <div className="wheel-tools">
               <input
@@ -214,6 +235,19 @@ function ColourStep() {
           </div>
         </div>
       </section>
+      {creating && (
+        <GenerationOverlay
+          key={attempt}
+          expectedSeconds={expectedSecs}
+          subtitle={`${garmentName} — ${selected.map((id) => byId.get(id)?.display_name ?? id).join(" · ")}`}
+          error={error}
+          onRetry={retry}
+          onClose={() => {
+            setCreating(false);
+            setError(null);
+          }}
+        />
+      )}
     </div>
   );
 }

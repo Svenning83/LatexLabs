@@ -1,32 +1,56 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import GenerationOverlay from "./GenerationOverlay";
 
 export default function StudyActions({
   studyId,
   garmentId,
   colourIds,
+  colourNames,
 }: {
   studyId: string;
   garmentId: string;
   colourIds: string[];
+  colourNames?: string[];
 }) {
   const router = useRouter();
   const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+  const [expectedSecs, setExpectedSecs] = useState(25);
+  const [attempt, setAttempt] = useState(0);
+  const posting = useRef(false);
 
-  const regenerate = async () => {
-    setBusy(true);
+  useEffect(() => {
+    fetch("/api/config").then((r) => r.json()).then((d) => {
+      if (d.expected_seconds) setExpectedSecs(d.expected_seconds);
+    }).catch(() => {});
+  }, []);
+
+  const doPost = async () => {
+    if (posting.current) return;
+    posting.current = true;
     try {
       const res = await fetch(`/api/studies/${studyId}/regenerate`, { method: "POST" });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Regeneration failed");
+      if (!res.ok || data.status === "failed") {
+        throw new Error(data.error || "Regeneration failed");
+      }
       router.push(`/study/${data.study_id}`);
       router.refresh();
-    } catch {
-      setBusy(false);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Regeneration failed");
+    } finally {
+      posting.current = false;
     }
+  };
+
+  const regenerate = () => {
+    setBusy(true);
+    setError(null);
+    void doPost();
   };
 
   const share = async () => {
@@ -54,6 +78,23 @@ export default function StudyActions({
       <button className="btn btn-ghost" onClick={share}>
         {copied ? "Link copied" : "Share"}
       </button>
+      {busy && (
+        <GenerationOverlay
+          key={attempt}
+          expectedSeconds={expectedSecs}
+          subtitle={colourNames?.join(" · ")}
+          error={error}
+          onRetry={() => {
+            setError(null);
+            setAttempt((a) => a + 1);
+            void doPost();
+          }}
+          onClose={() => {
+            setBusy(false);
+            setError(null);
+          }}
+        />
+      )}
     </div>
   );
 }

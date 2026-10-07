@@ -223,7 +223,7 @@ button { font-family: inherit; }
 
 /* tall garment cards (specificity must beat .garment-card .g-img below) */
 .garment-grid .garment-card-tall .g-img {
-  aspect-ratio: 2 / 3;
+  aspect-ratio: 4 / 5;
   background: #0e0f12;
 }
 .garment-grid .garment-card-tall .g-img img {
@@ -356,6 +356,40 @@ button { font-family: inherit; }
   margin: 10px 0 0;
 }
 .study-meta { align-items: flex-end; }
+
+/* ---------- generation overlay ---------- */
+.gen-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  background: rgba(11, 12, 14, 0.94);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.gen-card { width: min(560px, 100%); }
+.gen-title {
+  font-size: clamp(28px, 4vw, 38px);
+  font-weight: 640;
+  letter-spacing: -0.015em;
+  margin: 14px 0 8px;
+}
+.gen-sub { color: var(--muted); font-size: 14.5px; margin: 0 0 8px; }
+.gen-track {
+  height: 2px;
+  background: var(--line);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 34px;
+}
+.gen-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transition: width 0.2s linear;
+}
+.gen-eta { margin-top: 12px; font-size: 12px; color: var(--faint); }
 
 @media (max-width: 960px) {
   .wheel-layout { grid-template-columns: 1fr; }

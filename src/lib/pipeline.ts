@@ -8,21 +8,22 @@ import {
   createStudyId,
   getStudy,
   imagePathFor,
+  persistStudyImage,
   saveStudy,
 } from "./studies";
 import type { GenerationRequest, Study, StudyStage } from "./types";
 
-function setStage(study: Study, stage: StudyStage, error: string | null = null): void {
+async function setStage(study: Study, stage: StudyStage, error: string | null = null): Promise<void> {
   study.status = stage;
   study.error = error;
-  saveStudy(study);
+  await saveStudy(study);
 }
 
-export function createStudy(
+export async function createStudy(
   garmentId: string,
   colourIds: string[],
   parentStudyId: string | null = null,
-): Study {
+): Promise<Study> {
   const garment = getGarment(garmentId);
   if (!garment) throw new Error(`Unknown garment template: ${garmentId}`);
   const colours = getColours(colourIds);
@@ -54,17 +55,17 @@ export function createStudy(
     parent_study_id: parentStudyId,
     created_at: new Date().toISOString(),
   };
-  saveStudy(study);
+  await saveStudy(study);
   return study;
 }
 
 /** Runs the staged generation pipeline, persisting each stage to the study. */
 export async function runGeneration(studyId: string): Promise<void> {
-  const study = getStudy(studyId);
+  const study = await getStudy(studyId);
   if (!study) return;
   try {
     // Stage 1 - read references: reload records, resolve mapping.
-    setStage(study, "reading_references");
+    await setStage(study, "reading_references");
     const garment = getGarment(study.garment_template);
     if (!garment) throw new Error(`Garment template missing: ${study.garment_template}`);
     const colours = getColours(study.selected_colours);
@@ -72,17 +73,19 @@ export async function runGeneration(studyId: string): Promise<void> {
     await tick();
 
     // Stage 2 - compose: build the structured prompt + reference set.
-    setStage(study, "composing");
+    await setStage(study, "composing");
     const built = buildStudyPrompt(garment, colours, assignments);
     study.colour_mapping = assignments;
+    study.prompt = built.prompt;
+    await saveStudy(study);
     const outPath = imagePathFor(study.study_id);
     await tick();
 
     // Stage 3 - generate via the configured provider.
-    setStage(study, "generating");
+    await setStage(study, "generating");
     const provider = getProvider();
     study.provider = provider.name;
-    saveStudy(study);
+    await saveStudy(study);
     const req: GenerationRequest = {
       study,
       garment,
@@ -98,12 +101,12 @@ export async function runGeneration(studyId: string): Promise<void> {
     }
 
     // Stage 4 - finish.
-    setStage(study, "finishing");
-    study.generated_image = `data/studies/${study.study_id}.png`;
+    await setStage(study, "finishing");
+    study.generated_image = await persistStudyImage(study.study_id);
     await tick(400);
-    setStage(study, "ready");
+    await setStage(study, "ready");
   } catch (err) {
-    setStage(study, "failed", err instanceof Error ? err.message : String(err));
+    await setStage(study, "failed", err instanceof Error ? err.message : String(err));
   }
 }
 

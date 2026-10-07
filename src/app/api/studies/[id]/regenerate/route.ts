@@ -3,15 +3,21 @@ import { createStudy, runGeneration } from "@/lib/pipeline";
 import { getStudy } from "@/lib/studies";
 
 export const runtime = "nodejs";
+export const maxDuration = 300;
 
 export async function POST(
   _req: Request,
   { params }: { params: Promise<{ id: string }> },
 ) {
   const { id } = await params;
-  const source = getStudy(id);
+  const source = await getStudy(id);
   if (!source) return NextResponse.json({ error: "Study not found" }, { status: 404 });
-  const study = createStudy(source.garment_template, source.selected_colours, source.study_id);
-  void runGeneration(study.study_id);
-  return NextResponse.json({ study_id: study.study_id }, { status: 201 });
+  const study = await createStudy(source.garment_template, source.selected_colours, source.study_id);
+  await runGeneration(study.study_id);
+  const final = await getStudy(study.study_id);
+  const status = final?.status ?? "failed";
+  return NextResponse.json(
+    { study_id: study.study_id, status, error: final?.error ?? null },
+    { status: status === "ready" ? 201 : 502 },
+  );
 }

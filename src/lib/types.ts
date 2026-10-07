@@ -99,6 +99,8 @@ export interface Study {
   provider: string;
   parent_study_id: string | null;
   created_at: string;
+  /** The exact prompt sent to the provider - kept for auditability/debugging. */
+  prompt?: string;
 }
 
 export interface ReferenceImage {
