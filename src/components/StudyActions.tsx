@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import AccessGate from "./AccessGate";
 import GenerationOverlay from "./GenerationOverlay";
 
 export default function StudyActions({
@@ -18,6 +19,8 @@ export default function StudyActions({
   const router = useRouter();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [limited, setLimited] = useState(false);
+  const [freeLimit, setFreeLimit] = useState(3);
   const [copied, setCopied] = useState(false);
   const [expectedSecs, setExpectedSecs] = useState(25);
   const [attempt, setAttempt] = useState(0);
@@ -26,6 +29,10 @@ export default function StudyActions({
   useEffect(() => {
     fetch("/api/config").then((r) => r.json()).then((d) => {
       if (d.expected_seconds) setExpectedSecs(d.expected_seconds);
+      if (typeof d.free_limit === "number") setFreeLimit(d.free_limit);
+      if (!d.access_granted && typeof d.free_used === "number" && d.free_used >= (d.free_limit ?? 3)) {
+        setLimited(true);
+      }
     }).catch(() => {});
   }, []);
 
@@ -35,6 +42,12 @@ export default function StudyActions({
     try {
       const res = await fetch(`/api/studies/${studyId}/regenerate`, { method: "POST" });
       const data = await res.json();
+      if (res.status === 403 && data.error === "free_limit") {
+        setFreeLimit(typeof data.free_limit === "number" ? data.free_limit : 3);
+        setLimited(true);
+        setBusy(false);
+        return;
+      }
       if (!res.ok || data.status === "failed") {
         throw new Error(data.error || "Regeneration failed");
       }
@@ -65,6 +78,7 @@ export default function StudyActions({
   };
 
   return (
+    <>
     <div className="study-actions">
       <button className="btn btn-primary" onClick={regenerate} disabled={busy}>
         {busy ? "Regenerating…" : "Regenerate"}
@@ -96,5 +110,19 @@ export default function StudyActions({
         />
       )}
     </div>
+    {limited && (
+      <div style={{ marginTop: 16, maxWidth: 420 }}>
+        <AccessGate
+          limit={freeLimit}
+          onUnlocked={() => {
+            setLimited(false);
+            setBusy(true);
+            setError(null);
+            void doPost();
+          }}
+        />
+      </div>
+    )}
+    </>
   );
 }

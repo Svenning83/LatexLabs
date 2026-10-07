@@ -3,6 +3,7 @@
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import AccessGate from "@/components/AccessGate";
 import ColourWheel from "@/components/ColourWheel";
 import GenerationOverlay from "@/components/GenerationOverlay";
 import Nav from "@/components/Nav";
@@ -34,6 +35,9 @@ function ColourStep() {
   const [finish, setFinish] = useState<string | null>(null);
   const [creating, setCreating] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [limited, setLimited] = useState(false);
+  const [freeLimit, setFreeLimit] = useState(3);
+  const [freeRemaining, setFreeRemaining] = useState<number | null>(null);
   const [expectedSecs, setExpectedSecs] = useState(25);
   const [attempt, setAttempt] = useState(0);
   const posting = useRef(false);
@@ -56,6 +60,11 @@ function ColourStep() {
     });
     fetch("/api/config").then((r) => r.json()).then((d) => {
       if (d.expected_seconds) setExpectedSecs(d.expected_seconds);
+      if (typeof d.free_limit === "number") setFreeLimit(d.free_limit);
+      if (!d.access_granted && typeof d.free_used === "number" && d.free_used > 0) {
+        setFreeRemaining(Math.max(0, (d.free_limit ?? 3) - d.free_used));
+        if (d.free_used >= (d.free_limit ?? 3)) setLimited(true);
+      }
     }).catch(() => {});
   }, [garmentId]);
 
@@ -88,8 +97,20 @@ function ColourStep() {
         body: JSON.stringify({ garment_id: garmentId, colour_ids: selected }),
       });
       const data = await res.json();
+      if (res.status === 403 && data.error === "free_limit") {
+        setFreeLimit(typeof data.free_limit === "number" ? data.free_limit : 3);
+        setLimited(true);
+        setCreating(false);
+        return;
+      }
       if (!res.ok || data.status === "failed") {
         throw new Error(data.error || "Generation failed");
+      }
+      if (typeof data.free_remaining === "number") {
+        // null (access-granted) hides the counter entirely.
+        setFreeRemaining(data.free_remaining);
+      } else {
+        setFreeRemaining(null);
       }
       router.push(`/study/${data.study_id}`);
     } catch (e) {
@@ -172,14 +193,33 @@ function ColourStep() {
             )}
 
             <div style={{ height: 16 }} />
-            <button
-              className="btn btn-primary"
-              style={{ width: "100%", justifyContent: "center" }}
-              disabled={selected.length === 0 || creating}
-              onClick={create}
-            >
-              {creating ? "Creating…" : "Create →"}
-            </button>
+            {limited ? (
+              <AccessGate
+                limit={freeLimit}
+                onUnlocked={() => {
+                  setLimited(false);
+                  setCreating(true);
+                  setError(null);
+                  void doPost();
+                }}
+              />
+            ) : (
+              <>
+                <button
+                  className="btn btn-primary"
+                  style={{ width: "100%", justifyContent: "center" }}
+                  disabled={selected.length === 0 || creating}
+                  onClick={create}
+                >
+                  {creating ? "Creating…" : "Create →"}
+                </button>
+                {freeRemaining !== null && (
+                  <div className="micro micro-faint" style={{ marginTop: 10, textAlign: "center" }}>
+                    {freeRemaining} of {freeLimit} free studies left
+                  </div>
+                )}
+              </>
+            )}
 
             <div className="wheel-tools">
               <input

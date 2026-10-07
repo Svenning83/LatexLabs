@@ -6,6 +6,7 @@ import { head, put } from "@vercel/blob";
 import type { Study } from "./types";
 
 const STUDIES_DIR = path.join(process.cwd(), "data", "studies");
+const USAGE_DIR = path.join(process.cwd(), "data", "usage");
 
 // Studies persist to Vercel Blob when BLOB_READ_WRITE_TOKEN is present
 // (serverless filesystems are ephemeral); otherwise local disk for dev.
@@ -76,6 +77,51 @@ export async function getStudy(id: string): Promise<Study | null> {
   } catch {
     return null;
   }
+}
+
+const usageKey = (id: string) => `usage/${id}.json`;
+
+/** Free-generation counter per visitor cookie id (same dual-mode store). */
+export async function getUsageCount(visitorId: string): Promise<number> {
+  if (useBlob()) {
+    try {
+      const meta = await head(usageKey(visitorId));
+      const res = await fetch(`${meta.url}?v=${Date.now()}`, {
+        cache: "no-store",
+      });
+      if (!res.ok) return 0;
+      const j = (await res.json()) as { count?: number };
+      return typeof j.count === "number" ? j.count : 0;
+    } catch {
+      return 0;
+    }
+  }
+  const p = path.join(USAGE_DIR, `${visitorId}.json`);
+  if (!fs.existsSync(p)) return 0;
+  try {
+    const j = JSON.parse(fs.readFileSync(p, "utf8")) as { count?: number };
+    return typeof j.count === "number" ? j.count : 0;
+  } catch {
+    return 0;
+  }
+}
+
+export async function setUsageCount(
+  visitorId: string,
+  count: number,
+): Promise<void> {
+  const body = JSON.stringify({ count });
+  if (useBlob()) {
+    await put(usageKey(visitorId), body, {
+      access: "public",
+      contentType: "application/json",
+      addRandomSuffix: false,
+      allowOverwrite: true,
+    });
+    return;
+  }
+  fs.mkdirSync(USAGE_DIR, { recursive: true });
+  fs.writeFileSync(path.join(USAGE_DIR, `${visitorId}.json`), body);
 }
 
 /**

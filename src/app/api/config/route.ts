@@ -1,4 +1,7 @@
 import { NextResponse } from "next/server";
+import { cookies } from "next/headers";
+import { getUsageCount } from "@/lib/studies";
+import { ACCESS_COOKIE, VISITOR_COOKIE, accessCookieOk, freeLimit } from "@/lib/usage";
 
 export const dynamic = "force-dynamic";
 
@@ -11,7 +14,7 @@ const EXPECTED: Record<string, number> = {
   auto: 60,
 };
 
-export function GET() {
+export async function GET() {
   const pref = (process.env.LATEXLABS_IMAGE_PROVIDER || "").toLowerCase();
   const provider =
     pref ||
@@ -33,5 +36,19 @@ export function GET() {
       : provider === "gemini"
         ? 25
         : (EXPECTED[quality] ?? EXPECTED.auto);
-  return NextResponse.json({ provider, model, quality, expected_seconds });
+
+  const jar = await cookies();
+  const vid = jar.get(VISITOR_COOKIE)?.value;
+  const access_granted = accessCookieOk(jar.get(ACCESS_COOKIE)?.value);
+  const free_used = vid && !access_granted ? await getUsageCount(vid) : 0;
+
+  return NextResponse.json({
+    provider,
+    model,
+    quality,
+    expected_seconds,
+    free_limit: freeLimit(),
+    free_used,
+    access_granted,
+  });
 }
