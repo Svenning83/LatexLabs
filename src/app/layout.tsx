@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     siteName: "LatexLabs",
     type: "website",
-    images: [{ url: "/og.jpg", width: 1200, height: 628 }],
+    images: [{ url: "/og.jpg", width: 1200, height: 1200 }],
   },
   twitter: {
     card: "summary_large_image",
