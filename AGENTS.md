@@ -7,7 +7,9 @@
 - PowerShell execution policy blocks `npm.ps1` — always invoke
   `npm.cmd` / `npx.cmd` by full path, e.g.:
   `& "C:\Users\simon\node\node-v22.23.2-win-x64\npm.cmd" run dev`
-- No git installed.
+- Deploys: push to `main` on GitHub (Svenning83/LatexLabs) — Vercel builds
+  automatically. Serverless functions only ship traced files; runtime-read
+  assets are force-included via `outputFileTracingIncludes` in next.config.mjs.
 - libidex.com returns 403 to non-browser fetches (Cloudflare). Colour data was
   seeded from the customer-facing configurator list; do not scrape it at runtime.
 

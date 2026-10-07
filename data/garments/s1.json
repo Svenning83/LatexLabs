@@ -2,7 +2,7 @@
   "id": "s1",
   "code": "S1",
   "name": "Technical Singlet",
-  "title": "S1 \u00e2\u20ac\u201d Technical Singlet",
+  "title": "S1 — Technical Singlet",
   "display_name": "Singlet",
   "descriptor": "Sleeveless",
   "card_image": "/garments/singlet.png?v=7",
@@ -10,16 +10,16 @@
   "construction": [
     "sleeveless singlet",
     "stand collar",
-    "full front zip",
+    "clean uninterrupted front panel (no front closure)",
     "technical panel construction",
     "short legs",
     "clean leg openings",
-    "realistic seams",
+    "flat bonded latex seams",
     "close athletic fit"
   ],
-  "construction_prompt": "A sleeveless latex singlet with a stand collar, a full-length front zip running from collar to crotch, short legs ending mid-thigh with clean latex-finished leg openings, realistic glued latex seams, and a close athletic fit. Same technical chevron panel design language as the C catsuit: contoured V-shaped panels across the chest, torso and hips, a strong central zip column and inner thigh panels. Arms and shoulders are bare skin; the garment ends at the shoulders.",
-  "master_reference": "references/garments/02_S1_Technical_Singlet_Master.png",
-  "template_version": "s1-master-v1",
+  "construction_prompt": "A sleeveless technical latex singlet with a stand collar, a clean uninterrupted front panel with no zip or closure, short legs ending mid-thigh with simple cut latex edges, and a close athletic fit. Made from glued sheet latex with flat bonded joins between technical panels - not sewn seams, piping or edging. Contoured technical panel design across the chest, torso and hips with a central front column, inner thigh panels and a centre-back stripe. The stand collar is integrated latex construction, not a separate fabric band. Arms and shoulders are bare skin; the garment ends at the shoulders. No zips, fasteners, hardware or decorative construction anywhere on the garment.",
+  "master_reference": "garments/singlet.png",
+  "template_version": "s1-master-v2",
   "views": [
     {
       "id": "front",
@@ -27,40 +27,40 @@
     },
     {
       "id": "back",
-      "label": "BACK VIEW"
-    },
-    {
-      "id": "three_quarter",
-      "label": "3/4 VIEW"
+      "label": "REAR VIEW"
     },
     {
       "id": "side",
       "label": "SIDE VIEW"
+    },
+    {
+      "id": "three_quarter",
+      "label": "THREE-QUARTER VIEW"
     }
   ],
   "details": [
     {
-      "id": "collar_zip",
-      "label": "COLLAR & ZIP DETAIL"
+      "id": "collar_chest",
+      "label": "COLLAR & UPPER CHEST DETAIL"
     },
     {
-      "id": "shoulder_opening",
-      "label": "SHOULDER OPENING DETAIL"
-    },
-    {
-      "id": "hip_panel",
-      "label": "HIP PANEL DETAIL"
+      "id": "shoulder_panel",
+      "label": "SHOULDER & PANEL DETAIL"
     },
     {
       "id": "leg_opening",
-      "label": "LEG OPENING DETAIL"
+      "label": "LEG & OPENING DETAIL"
+    },
+    {
+      "id": "rear_hip",
+      "label": "REAR HIP & SEAT DETAIL"
     }
   ],
   "zones": {
     "core": {
       "label": "Core structure",
       "parts": [
-        "central front zip column from collar through crotch",
+        "central front column from collar through crotch",
         "stand collar",
         "centre back stripe",
         "inner thigh panels",

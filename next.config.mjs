@@ -6,7 +6,6 @@
 const GENERATION_ASSETS = [
   "./data/colours/**/*",
   "./data/garments/**/*",
-  "./data/references/**/*",
   "./public/garments/**/*",
   "./public/swatches/**/*",
 ];

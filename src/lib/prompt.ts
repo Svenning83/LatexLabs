@@ -6,60 +6,13 @@ import type {
 } from "./types";
 import { describeMapping } from "./mapping";
 
-export const PROMPT_VERSION = "study-prompt-v2";
+export const PROMPT_VERSION = "study-prompt-v3";
 
 const COUNT_WORDS = ["", "ONE", "TWO", "THREE"];
-
-/**
- * Global material rules (spec §6-7). These apply to every study regardless of
- * the colours chosen. Per-colour guidance from the colour record is appended
- * per assignment.
- */
-const MATERIAL_RULES = `LATEX MATERIAL RULES (apply to the whole garment):
-- Realistic sheet latex: glossy enough to read clearly as latex, but NEVER mirror-like, chrome, PVC or wet-look plastic.
-- Broad soft highlights, realistic studio reflections, subtle surface variation, realistic tension lines and creases at joints and panel transitions.
-- METALLIC colours: metallic depth and richness only - never chrome, never mirror.
-- PEARLSHEEN colours: pearlescent, soft iridescent sheen - never flat grey/white, never chrome.
-- TRANSLUCENT colours: dense and saturated, predominantly solid at normal viewing distance; subtle translucency only in stretched or strongly highlighted areas. Never glass, never clear plastic, never pale washed-out tones, no skin visible through the material.
-- Lighting and reflections may create bright highlights, but a highlight must never read as a different latex colour.`;
-
-const COMPOSITION_RULES = `COMPOSITION - the LatexLabs Colour Study sheet (match the supplied canonical layout reference exactly):
-- One single landscape sheet, very dark charcoal background (near-black).
-- Top ~80%: FOUR full-body studio views of the SAME model wearing the garment, side by side with thin gaps: FRONT VIEW, BACK VIEW, 3/4 VIEW, SIDE VIEW. Each panel is labelled in small white uppercase letterspaced text.
-- Right column (~18% width): FOUR close-up DETAIL crops stacked vertically, each labelled.
-- Bottom band: brand footer. Left: the word "LATEXLABS" as the brand wordmark (LATEX in white, LABS in grey, followed by the two-slash mark - one red slash above one amber slash). Centre: the garment title and "COLOUR STUDY -" line with the colour names, plus a variant line in small type. Right: colour swatch chips, each swatch captioned with the exact colour name, manufacturer name and category in small uppercase type.
-- Restrained, premium, image-first presentation. No extra ornamentation, no watermarks, no paragraphs of text.
-- Photorealistic studio photography inside each panel: athletic male model, short dark hair, neutral standing pose, soft grey studio backdrop, soft directional lighting, realistic skin, realistic latex.`;
-
-function countConstraint(n: number, names: string[]): string {
-  const list = names.map((s) => `"${s}"`).join(", ");
-  if (n === 1) {
-    return `COLOUR COUNT - HARD CONSTRAINT:
-- The garment uses EXACTLY ONE colour: ${list}.
-- Every panel is the same material and colour. Panel construction stays visible through seams, shape, tension, shadows and reflections ONLY.
-- Highlights may appear lighter because of reflections, but no panel may read as a second colour.`;
-  }
-  return `COLOUR COUNT - HARD CONSTRAINT:
-- The garment uses EXACTLY ${COUNT_WORDS[n]} colours: ${list}.
-- Both/all selected colours must be clearly present. NEVER introduce a third/additional colour - the garment has more structural zones than colours by design; one colour deliberately occupies multiple zones.
-- Zips, trims and seams follow their zone's colour; hardware (zip puller) may be dark metal.`;
-}
-
-function colourBlock(colours: ColourRecord[], assignments: ZoneAssignment[]): string {
-  const swatches = colours
-    .map((c, i) => `- COLOUR ${i + 1}: "${c.display_name}" (${c.category} finish, by ${c.manufacturer}) - ${c.generation_guidance}`)
-    .join("\n");
-  return `SELECTED COLOURS AND MATERIAL INTERPRETATION (reference images are authoritative - treat names as materials, not hex values):
-${swatches}
-
-COLOUR ASSIGNMENT - which colour goes on which panels:
-${describeMapping(assignments, colours)}`;
-}
 
 export interface BuiltPrompt {
   prompt: string;
   referenceImages: ReferenceImage[];
-  variantLine: string;
 }
 
 /* ------------------------------------------------------------------ */
@@ -178,88 +131,223 @@ AVOID:
 separate collage panels, obvious image joins, mismatched backgrounds, inconsistent lighting, different models, different body proportions, different garments, mannequin, fantasy anatomy, exaggerated muscles, exaggerated hips, feminine proportions, bodybuilder physique, fashion accessories, shoes, boots, socks, zips, collars, cuffs, waistbands, stitching, decorative seams, raised colour panels, piping, excessive wrinkles, wet plastic, chrome reflections, harsh highlights, extra colours, text, logos, labels, watermarks or props.`;
 }
 
+/* ------------------------------------------------------------------ */
+/* S1 Technical singlet - canonical v2 port.                            */
+/* Same composition architecture as C, but keeps S1's own construction: */
+/* stand collar + technical panels; front zip intentionally omitted.    */
+/* ------------------------------------------------------------------ */
+
+function zoneColourSection(
+  garmentCode: string,
+  garmentName: string,
+  trimWord: string,
+  colours: ColourRecord[],
+  assignments: ZoneAssignment[],
+): string {
+  const n = colours.length;
+  const names = colours.map((c) => c.display_name);
+  const colourList = names
+    .map((s, i) => `${i + 1}. ${s} (${colours[i].category.toLowerCase()} latex)`)
+    .join("\n");
+  const distinct =
+    n > 1
+      ? `\n\n${names.join(", ")} are ${COUNT_WORDS[n].toLowerCase()} DIFFERENT colours. Each selected colour must be clearly visible in its assigned zones and remain visually distinct. Never merge, blend, drop or replace a selected colour, and never let one colour read merely as a shade of another.`
+      : "";
+  const countNote =
+    n === 1
+      ? `The number of selected colours is authoritative: the entire ${garmentName} is monochrome - panels, seams and construction stay visible through construction, shadows and reflections only, never as extra colours.`
+      : `The number of selected colours is authoritative: the garment must never contain more distinct garment colours than the ${COUNT_WORDS[n].toLowerCase()} selected. Do not create an extra colour through hardware, seam material, ${trimWord} trim or reflections.`;
+  return `COLOURS:
+Use exactly ${n === 1 ? "this one" : `these ${COUNT_WORDS[n].toLowerCase()}`} selected colour${n === 1 ? "" : "s"}:
+${colourList}
+
+Apply ${n === 1 ? "it" : "them"} to the ${garmentCode}'s physical construction zones, consistently across all four views:
+${describeMapping(assignments, colours)}
+
+${countNote} Colour boundaries should follow the ${garmentCode} construction and its mapped zones, and must not create unrequested physical ridges or seams. Do not introduce additional colours, gradients or colour bleeding.${distinct}`;
+}
+
+function buildSingletPrompt(colours: ColourRecord[], assignments: ZoneAssignment[]): string {
+  const materialNotes = colours
+    .map((c, i) => `- COLOUR ${i + 1} "${c.display_name}" (${c.category} finish): ${c.generation_guidance}`)
+    .join("\n");
+
+  return `Create a high-end, photorealistic studio product photoshoot of a single adult male model wearing the LatexLabs S1 technical latex singlet.
+
+The final image is ONE COHESIVE STUDIO PHOTOGRAPHIC COMPOSITION, not a collage of separately generated images.
+
+FOUR FULL-BODY VIEWS:
+Show the SAME adult male model wearing the SAME S1 singlet in four coordinated views:
+1. Front view
+2. Rear view
+3. Side / profile view
+4. Three-quarter front view
+
+All four views must look as though they were photographed during the SAME professional studio photoshoot, with the same model, body proportions, garment, construction, lighting, camera quality, background and scale. They must share one continuous visual environment. Avoid obvious cut-out joins, mismatched lighting or unrelated panel boundaries.
+
+MODEL:
+Adult male with neutral, natural athletic proportions: moderately broad shoulders, natural chest, relatively straight waist and understated hips. Fit adult rather than bodybuilder or fashion model. Neutral expression and relaxed professional product-photography poses. Bare feet are acceptable. No shoes, boots, socks or accessories. The model is secondary to the garment.
+
+GARMENT - S1 CONSTRUCTION:
+Sleeveless technical latex singlet with short legs ending around mid-thigh. Preserve the established S1 garment construction exactly:
+- Stand collar.
+- Clean uninterrupted front panel - there is NO front zip or front closure of any kind.
+- Technical panel construction.
+- Realistic flat bonded latex construction lines where they belong to the S1 design.
+- Close athletic fit.
+- Clean short-leg openings.
+
+The garment is real glued-sheet latex with realistic bonded technical construction. Do NOT replace S1's collar or panel construction with the collarless construction used by the C catsuit.
+
+The stand collar must read as a real latex collar integrated into the garment, not as a separate fabric neck band.
+
+PANEL CONSTRUCTION AND OPENINGS:
+S1 is a technically panelled latex garment. Flat bonded joins between genuine latex panels are part of the design and should remain visible but subtle.
+
+These panel joins must look like bonded sheet-latex construction, not sewn fabric. They are flat construction joins between adjacent latex sheets, not raised seams, piping or decorative edging.
+
+Do NOT add piping, binding or raised edging to any opening. The armholes and short-leg openings terminate in simple, direct cut edges through the latex sheet, with no separate material around them - no border, rim, piping, facing, folded edge, rolled edge, cuff, reinforced strip or secondary outline.
+
+The stand collar is a genuine part of the S1 design and may have its own flat bonded construction where physically necessary, but it must not become a padded, fabric-like or separately edged collar.
+
+Colour transitions may coincide with genuine panel joins, but colour boundaries must NOT automatically create raised edges, piping or decorative outlines.
+
+Do not invent additional zips, fasteners, pockets, hardware, straps or decorative construction.
+
+${zoneColourSection("S1", "singlet", "collar", colours, assignments)}
+
+MATERIAL INTERPRETATION PER COLOUR (reference swatches are authoritative):
+${materialNotes}
+
+Interpret each colour according to its recorded finish: metallic colours are metallic latex, never chrome or mirror metal; pearlsheen colours have a pearlescent sheen; translucent colours show appropriate realistic latex translucency; standard colours are normal glossy latex; Supatex colours carry a deeper, higher-gloss finish. Lighting and reflections must not create a persistent additional colour - specular highlights remain lighting reflections, not garment colours.
+
+LATEX AND CONSTRUCTION:
+Realistic latex rubber with a refined glossy/satin surface appropriate to each selected finish. The garment should look tactile and physically plausible rather than futuristic or CGI-like. Technical seams and panels should have realistic flat bonded construction - visible enough to communicate the S1 design, but restrained and natural. The word "seam" never means raised piping, binding or edging. Use subtle natural creasing around shoulders, torso, hips, crotch and short-leg movement areas. Avoid excessive wrinkles, repeated symmetrical folds or bunching.
+
+STUDIO:
+One continuous premium studio environment: dark charcoal-to-grey gradient background with a slightly lighter area behind the models, neutral grey studio floor, soft realistic grounding shadows, soft cinematic directional studio lighting consistent across all four views.
+
+COMPOSITION:
+The four full-body views occupy the main area and read as one coordinated studio photoshoot. On the RIGHT side, include four smaller close-up photographic details:
+
+DETAIL VIEW 1 - COLLAR / UPPER CHEST:
+Close-up of the stand collar, upper chest and clean front panel construction.
+
+DETAIL VIEW 2 - SHOULDER / PANEL:
+Close-up of the technical panel construction and flat bonded latex joins around the shoulder and armhole.
+
+DETAIL VIEW 3 - LEG / OPENING:
+Close-up of the short leg, mapped colour zones and the clean leg opening edge.
+
+DETAIL VIEW 4 - REAR HIP / SEAT:
+Close-up of the rear panel construction and colour arrangement around the seat.
+
+The close-ups must come from the SAME S1 garment and SAME photoshoot as the four full-body views. They are photographic material and colour studies, not construction diagrams - do not exaggerate or invent seams at close range.
+
+IMPORTANT:
+The final image must contain NO text, NO labels, NO logos, NO colour names, NO swatches, NO captions, NO measurements and NO watermarks. LatexLabs adds all interface elements separately.
+
+AVOID:
+different models between views, inconsistent body proportions, collage-like joins, mismatched lighting, futuristic CGI clothing, applying the C catsuit's collarless construction to S1, missing stand collar, front zips or plackets, invented fasteners or hardware, extra colours, merged colours, chrome-like metallics, incorrect translucent behaviour, unrequested seams, decorative diagram lines, exaggerated muscles, exaggerated hips, feminine proportions, bodybuilder physique, fashion accessories, shoes, boots, socks, excessive wrinkles, wet plastic, harsh highlights, text, logos, watermarks or props.`;
+}
+
+/* ------------------------------------------------------------------ */
+/* SH1 Technical shorts - canonical v2 port.                            */
+/* Same composition architecture; keeps integrated waistband + panel    */
+/* construction; front zip intentionally omitted.                       */
+/* ------------------------------------------------------------------ */
+
+function buildShortsPrompt(colours: ColourRecord[], assignments: ZoneAssignment[]): string {
+  const materialNotes = colours
+    .map((c, i) => `- COLOUR ${i + 1} "${c.display_name}" (${c.category} finish): ${c.generation_guidance}`)
+    .join("\n");
+
+  return `Create a high-end, photorealistic studio product photoshoot of a single adult male model wearing the LatexLabs SH1 technical latex shorts.
+
+The final image is ONE COHESIVE STUDIO PHOTOGRAPHIC COMPOSITION, not a collage of separately generated images.
+
+FOUR FULL-BODY VIEWS:
+Show the SAME adult male model wearing the SAME SH1 shorts in four coordinated views:
+1. Front view
+2. Rear view
+3. Side / profile view
+4. Three-quarter front view
+
+All four views must look as though they were photographed during the SAME professional studio photoshoot, with the same model, body proportions, garment, construction, lighting, camera quality, background and scale. They must share one continuous visual environment. Avoid obvious cut-out joins, mismatched lighting or unrelated panel boundaries.
+
+MODEL:
+Adult male with neutral, natural athletic proportions and a relatively straight masculine waist and hips. Fit adult rather than bodybuilder or fashion model. Neutral expression and relaxed product-photography poses. Bare feet are acceptable. No shoes, boots, socks or accessories. Keep the model secondary to the garment.
+
+GARMENT - SH1 CONSTRUCTION:
+Technical latex shorts ending around mid-thigh. Preserve the established SH1 garment construction exactly:
+- Integrated waistband.
+- Defined central/front panel.
+- Defined side panels.
+- Restrained rear construction.
+- Clean leg openings.
+- Close athletic fit.
+
+The waistband must remain an integral part of the garment and read as real SH1 construction, not as an accidental extra strip or a separate fabric-like band. The front of the garment is a clean uninterrupted latex surface: there is NO front zip, zipper hardware or decorative front closure. The central and side panels should communicate the established SH1 design through realistic flat bonded joins and controlled colour placement.
+
+Do not invent additional zips, fasteners, pockets, hardware, straps or decorative construction.
+
+PANEL CONSTRUCTION AND OPENINGS:
+SH1 uses technical panel construction, but the construction must remain visually restrained. Panel joins are subtle, flat bonded joins between genuine latex areas - never raised seams, piping, binding, facing, rolled edges, cuffs or decorative borders. The leg openings are simple, clean cut latex edges with no piping, binding, cuff, facing or reinforced border. Colour transitions may follow genuine panel boundaries, but a colour boundary must NOT automatically create a raised seam or trim.
+
+${zoneColourSection("SH1", "shorts", "waistband", colours, assignments)}
+
+MATERIAL INTERPRETATION PER COLOUR (reference swatches are authoritative):
+${materialNotes}
+
+Interpret each colour according to its recorded finish: metallic colours are metallic latex, never chrome or mirror metal; pearlsheen colours have a pearlescent sheen; translucent colours show appropriate realistic latex translucency; standard colours are normal glossy latex; Supatex colours carry a deeper, higher-gloss finish. Lighting and reflections must not create a persistent additional colour - specular highlights remain lighting reflections, not garment colours.
+
+LATEX AND CONSTRUCTION:
+Realistic latex rubber with a refined glossy/satin surface appropriate to each selected finish. The shorts should look tactile and physically plausible rather than futuristic or CGI-like. The waistband, central/front panel, side panels and rear construction should be communicated through realistic bonded latex construction; keep the rear construction restrained. Use subtle natural creasing around the waistband, hips, crotch and where the legs move. Avoid excessive wrinkles, repeated symmetrical folds or bunching.
+
+STUDIO:
+One continuous premium studio environment: dark charcoal-to-grey gradient background with a slightly lighter area behind the models, neutral grey studio floor, soft realistic grounding shadows, soft cinematic directional studio lighting consistent across all four views.
+
+COMPOSITION:
+The four full-body views occupy the main area and read as one coordinated studio photoshoot. On the RIGHT side, include four smaller close-up photographic details:
+
+DETAIL VIEW 1 - WAISTBAND / UPPER SHORTS:
+Close-up of the integrated waistband and the upper front construction, with no visible zipper.
+
+DETAIL VIEW 2 - FRONT PANEL:
+Close-up of the central/front panel and its colour and flat bonded construction.
+
+DETAIL VIEW 3 - SIDE / LEG:
+Close-up of the side panel, colour arrangement and the clean mid-thigh leg opening.
+
+DETAIL VIEW 4 - REAR HIP / SEAT:
+Close-up of the restrained rear construction and colour arrangement around the seat.
+
+The close-ups must come from the SAME SH1 garment and SAME photoshoot as the four full-body views. They are photographic material and colour studies, not construction diagrams - do not exaggerate or invent seams at close range.
+
+IMPORTANT:
+The final image must contain NO text, NO labels, NO logos, NO colour names, NO swatches, NO captions, NO measurements and NO watermarks. LatexLabs adds all interface elements separately.
+
+AVOID:
+different models between views, inconsistent body proportions, collage-like joins, mismatched lighting, futuristic CGI clothing, missing waistband, visible zippers or fly hardware, invented fasteners or hardware, extra colours, merged colours, chrome-like metallics, incorrect translucent behaviour, unrequested seams, decorative diagram lines, exaggerated muscles, exaggerated hips, feminine proportions, excessive wrinkles, wet plastic, harsh highlights, text, logos, watermarks or props.`;
+}
+
 export function buildStudyPrompt(
   garment: GarmentTemplate,
   colours: ColourRecord[],
   assignments: ZoneAssignment[],
 ): BuiltPrompt {
-  const n = colours.length;
-  const names = colours.map((c) => c.display_name);
-  const joined = names.join(" + ").toUpperCase();
-  const variantLine = n === 1 ? "(ONE COLOUR VARIANT)" : n === 2 ? "(TWO COLOUR VARIANT)" : "(THREE COLOUR VARIANT)";
-
-  const detailLabels = garment.details.map((d) => d.label).join(", ");
-
-  if (garment.id === "c") {
-    const referenceImages: ReferenceImage[] = [
-      {
-        path: `public/garments/catsuit.png`,
-        role: "garment",
-        description: `${garment.title} garment reference (construction and colour-arrangement example)`,
-      },
-    ];
-    colours.forEach((c, i) => {
-      const rel = c.references[0];
-      if (rel) {
-        referenceImages.push({
-          path: `public${rel.startsWith("/") ? rel : `/${rel}`}`,
-          role: "colour",
-          description: `colour ${i + 1} swatch: ${c.display_name}`,
-        });
-      }
-    });
-    return {
-      prompt: buildCatsuitPrompt(colours),
-      referenceImages,
-      variantLine,
-    };
+  const cardImage = { c: "catsuit", s1: "singlet", sh1: "shorts" }[garment.id];
+  if (!cardImage) {
+    throw new Error(`No prompt builder for garment "${garment.id}"`);
   }
-
-  const prompt = `Create a LatexLabs Colour Study: a single premium visualisation sheet for a latex garment colour combination. This is a controlled visualisation task - the garment construction, panel layout and colour assignments below are fixed decisions; render them faithfully, do not redesign them.
-
-GARMENT - ${garment.title} (fixed LatexLabs template):
-${garment.construction_prompt}
-Construction features: ${garment.construction.join("; ")}.
-The supplied garment master reference image shows this exact template, its chevron panel construction and proportions - match its design language.
-
-${colourBlock(colours, assignments)}
-
-${countConstraint(n, names)}
-
-${MATERIAL_RULES}
-
-${COMPOSITION_RULES}
-- The four detail crops for this garment: ${detailLabels}.
-
-FOOTER TEXT TO RENDER (render exactly, small uppercase letterspaced type):
-- Brand: "LATEXLABS"
-- Title: "${garment.title.toUpperCase()}"
-- Subtitle: "COLOUR STUDY - ${joined}"
-- Variant: "${variantLine}"
-- Swatch captions: each colour name + "${colours[0].manufacturer}" + its category.
-
-The supplied colour study layout reference shows the exact composition, typography scale and footer treatment - follow it closely.`;
 
   const referenceImages: ReferenceImage[] = [
     {
-      path: `data/references/garments/${basename(garment.master_reference)}`,
+      path: `public/garments/${cardImage}.png`,
       role: "garment",
-      description: `${garment.title} master template reference`,
+      description: `${garment.title} garment reference (construction and colour-arrangement example)`,
     },
   ];
-  // Canonical study sheet for layout - pick by colour count.
-  const studyRef =
-    n === 1
-      ? "04_C_ColourStudy_1Colour_Black.png"
-      : n === 2
-        ? "05_C_ColourStudy_2Colour_TranslucentBlue_Black_CANONICAL.png"
-        : "06_C_ColourStudy_3Colour_PearlsheenSilver_MetallicRed_Black.png";
-  referenceImages.push({
-    path: `data/references/studies/${studyRef}`,
-    role: "layout",
-    description: `canonical ${n}-colour Colour Study layout reference`,
-  });
-  // Colour swatch references.
   colours.forEach((c, i) => {
     const rel = c.references[0];
     if (rel) {
@@ -271,9 +359,13 @@ The supplied colour study layout reference shows the exact composition, typograp
     }
   });
 
-  return { prompt, referenceImages, variantLine };
-}
-
-function basename(p: string): string {
-  return p.split(/[\\/]/).pop() ?? p;
+  return {
+    prompt:
+      garment.id === "c"
+        ? buildCatsuitPrompt(colours)
+        : garment.id === "s1"
+          ? buildSingletPrompt(colours, assignments)
+          : buildShortsPrompt(colours, assignments),
+    referenceImages,
+  };
 }

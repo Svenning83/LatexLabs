@@ -2,24 +2,24 @@
   "id": "c",
   "code": "C",
   "name": "Technical Catsuit",
-  "title": "C \u00e2\u20ac\u201d Technical Catsuit",
+  "title": "C — Technical Catsuit",
   "display_name": "Catsuit",
   "descriptor": "Full-length",
   "card_image": "/garments/catsuit.png?v=7",
-  "tagline": "Full-length technical catsuit. The LatexLabs flagship template.",
+  "tagline": "Full-length latex catsuit. The LatexLabs flagship template.",
   "construction": [
     "full-length catsuit",
-    "long fitted sleeves",
-    "stand collar",
-    "full front zip",
-    "technical panel construction",
-    "integrated latex feet",
-    "realistic seams",
+    "long fitted sleeves ending at the wrists",
+    "full-length legs ending at the ankles",
+    "glued sheet latex construction",
+    "low rounded neckline cut directly through the latex",
+    "open cut edges at wrists and ankles",
+    "no collar, cuffs, waistband, zips, fasteners or stitching",
     "close athletic fit"
   ],
-  "construction_prompt": "A full-length latex catsuit with long fitted sleeves, a stand collar, a full-length front zip running from collar to crotch, integrated latex feet (latex covers the feet like a sock - no bare skin at the feet), realistic glued latex seams, and a close athletic fit. The construction features a technical chevron panel design: contoured V-shaped panels radiate across the chest, waist and hips, plus a strong central zip column, inner-leg panels and a centre-back stripe.",
-  "master_reference": "references/garments/01_C_Technical_Catsuit_Master.png",
-  "template_version": "c-master-v1",
+  "construction_prompt": "A full-length, skin-tight latex catsuit with long fitted sleeves ending at the wrists and full-length legs ending at the ankles. It is made from glued sheet latex, not sewn fabric: the neckline is a simple low rounded opening cut directly through the latex sheet, and the wrists and ankles finish as simple open cut edges. There is no collar, cuffs, waistband, piping, folded or reinforced edges, zips, buttons, fasteners or decorative construction, and no visible stitching. Colour boundaries are changes of colour within one continuous latex surface, not raised panels or separate pieces.",
+  "master_reference": "garments/catsuit.png",
+  "template_version": "c-master-v2",
   "views": [
     {
       "id": "front",
@@ -27,65 +27,58 @@
     },
     {
       "id": "back",
-      "label": "BACK VIEW"
-    },
-    {
-      "id": "three_quarter",
-      "label": "3/4 VIEW"
+      "label": "REAR VIEW"
     },
     {
       "id": "side",
       "label": "SIDE VIEW"
+    },
+    {
+      "id": "three_quarter",
+      "label": "THREE-QUARTER VIEW"
     }
   ],
   "details": [
     {
-      "id": "collar_zip",
-      "label": "COLLAR & ZIP DETAIL"
+      "id": "neck_shoulder",
+      "label": "NECK & SHOULDER DETAIL"
     },
     {
-      "id": "shoulder_panel",
-      "label": "SHOULDER & CHEST PANEL DETAIL"
+      "id": "arm_wrist",
+      "label": "ARM & WRIST DETAIL"
     },
     {
-      "id": "hip_panel",
-      "label": "HIP & WAIST PANEL DETAIL"
+      "id": "leg_ankle",
+      "label": "LEG, KNEE & ANKLE DETAIL"
     },
     {
-      "id": "foot",
-      "label": "INTEGRATED FOOT DETAIL"
+      "id": "rear_hip",
+      "label": "REAR HIP & SEAT DETAIL"
     }
   ],
   "zones": {
     "core": {
-      "label": "Core structure",
+      "label": "Central body",
       "parts": [
-        "central front zip column from collar through crotch",
-        "stand collar",
-        "centre back stripe running down the spine",
-        "inner leg panels",
-        "crotch panel"
-      ]
-    },
-    "accent": {
-      "label": "Chevron accent panels",
-      "parts": [
-        "chest chevron panels",
-        "torso side chevron panels",
-        "waist and hip chevron panels",
-        "back chevron panels",
-        "thigh accent panels"
+        "central torso front and back",
+        "chest and abdomen",
+        "hips and seat",
+        "inner arms",
+        "inner legs",
+        "crotch"
       ]
     },
     "shell": {
-      "label": "Main body panels",
+      "label": "Outer sides",
       "parts": [
-        "main chest panels",
-        "shoulders",
-        "sleeves and arms",
-        "outer legs and calves",
-        "seat",
-        "integrated feet"
+        "broad outer areas on the outside of the arms, shoulder to wrist",
+        "broad outer areas on the outside of the legs, hip to ankle"
+      ]
+    },
+    "accent": {
+      "label": "Divider stripe",
+      "parts": [
+        "one narrow stripe between the outer sides and the central body, running down the outside of the arms and legs"
       ]
     }
   },
@@ -96,14 +89,14 @@
       "core": 0
     },
     "2": {
-      "shell": 0,
+      "shell": 1,
       "accent": 0,
-      "core": 1
+      "core": 0
     },
     "3": {
       "shell": 1,
-      "accent": 0,
-      "core": 2
+      "accent": 2,
+      "core": 0
     }
   }
 }

@@ -2,23 +2,24 @@
   "id": "sh1",
   "code": "SH1",
   "name": "Technical Shorts",
-  "title": "SH1 \u00e2\u20ac\u201d Technical Shorts",
+  "title": "SH1 — Technical Shorts",
   "display_name": "Shorts",
   "descriptor": "Mid-thigh",
   "card_image": "/garments/shorts.png?v=7",
   "tagline": "Mid-thigh technical shorts. Same construction language as C and S1.",
   "construction": [
     "mid-thigh shorts",
-    "waistband",
-    "full front zip",
+    "integrated waistband",
+    "clean uninterrupted front panel (no front closure)",
     "front/side panel construction",
+    "restrained rear construction",
     "clean leg openings",
-    "realistic seams",
+    "flat bonded latex seams",
     "close athletic fit"
   ],
-  "construction_prompt": "A pair of mid-thigh latex shorts with a structured waistband, a front zip fly, clean latex-finished leg openings, realistic glued latex seams, and a close athletic fit. Same technical chevron panel design language as the C catsuit and S1 singlet: contoured V-shaped panels wrapping the hips, thighs and seat, a strong central front zip column and inner thigh panels. Worn alone - the model's torso, arms and legs are bare skin.",
-  "master_reference": "references/garments/03_SH1_Technical_Shorts_Master.png",
-  "template_version": "sh1-master-v1",
+  "construction_prompt": "A pair of mid-thigh technical latex shorts with an integrated waistband, a defined central front panel and side panels, restrained rear construction, simple cut latex leg openings and a close athletic fit. Made from glued sheet latex with subtle flat bonded joins between panels - no sewn seams, piping, binding, cuffs or decorative borders. The front is a clean uninterrupted latex surface with no zip or closure. The waistband is integral latex construction, not a separate fabric-like band. Worn alone - the model's torso, arms and lower legs are bare skin.",
+  "master_reference": "garments/shorts.png",
+  "template_version": "sh1-master-v2",
   "views": [
     {
       "id": "front",
@@ -26,43 +27,43 @@
     },
     {
       "id": "back",
-      "label": "BACK VIEW"
-    },
-    {
-      "id": "three_quarter",
-      "label": "3/4 VIEW"
+      "label": "REAR VIEW"
     },
     {
       "id": "side",
       "label": "SIDE VIEW"
+    },
+    {
+      "id": "three_quarter",
+      "label": "THREE-QUARTER VIEW"
     }
   ],
   "details": [
     {
-      "id": "waistband_zip",
-      "label": "WAISTBAND & ZIP DETAIL"
+      "id": "waistband_upper",
+      "label": "WAISTBAND & UPPER SHORTS DETAIL"
     },
     {
-      "id": "side_panel",
-      "label": "SIDE PANEL DETAIL"
+      "id": "front_panel",
+      "label": "FRONT PANEL DETAIL"
     },
     {
-      "id": "rear_panel",
-      "label": "REAR PANEL DETAIL"
+      "id": "side_leg",
+      "label": "SIDE & LEG DETAIL"
     },
     {
-      "id": "leg_opening",
-      "label": "LEG OPENING DETAIL"
+      "id": "rear_hip",
+      "label": "REAR HIP & SEAT DETAIL"
     }
   ],
   "zones": {
     "core": {
       "label": "Core structure",
       "parts": [
-        "waistband",
-        "central front zip fly column",
+        "integrated waistband",
+        "central front panel column",
         "inner thigh panels",
-        "centre rear seam panel"
+        "centre rear panel"
       ]
     },
     "accent": {
